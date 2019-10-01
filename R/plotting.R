@@ -27,15 +27,19 @@ plotGeno <- function(geno,
 #'
 #' @param pos position of each p value
 #' @param pvalue p value
-#' @param xlab x lab
 #' @param ylab y lab
+#' @param ymax y max
 #' @param chr.name chromosome name
 #' @param threshold QTL threshold
 #'
 #' @rdname plotQtl
 #' @export
 #' @author Zhou-geng Xu
-plotQtl <- function(pos, pvalue, chr.name = NULL,
+plotQtl <- function(pos,
+                    pvalue,
+                    ylab = "LOD",
+                    chr.name = "",
+                    ymax = 10,
                     threshold = 2,
                     ...){
 
@@ -46,14 +50,14 @@ plotQtl <- function(pos, pvalue, chr.name = NULL,
                    lod = -log10(pvalue))
 
   plot(df$pos, df$lod,
-       ylab = "LOD",
+       ylab = ylab,
        xlab = chr.name,
        axes = FALSE, xaxs = "i", yaxs = "i",
-       ylim=c(1,8), pch=20 , cex = 0.2, type="l")
+       ylim=c(0,ymax), pch=20 , cex = 0.2, type="l")
 
   max_pos <- ceiling(max(df$pos) / 1000000) + 1
   axis(1, at=seq(0,max_pos)* 1000000, labels = seq(0,max_pos))
-  axis(2, at=seq(1,10))
+  axis(2, at=seq(0,ymax))
   lines(x=c(0,max_pos*1000000),y=c(threshold,threshold), col = "red")
 
   # add start position and end position
