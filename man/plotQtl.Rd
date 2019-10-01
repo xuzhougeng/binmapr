@@ -4,20 +4,21 @@
 \alias{plotQtl}
 \title{QTL mapping plot}
 \usage{
-plotQtl(pos, pvalue, chr.name = NULL, threshold = 2, ...)
+plotQtl(pos, pvalue, ylab = "LOD", chr.name = "", ymax = 10,
+  threshold = 2, ...)
 }
 \arguments{
 \item{pos}{position of each p value}
 
 \item{pvalue}{p value}
 
+\item{ylab}{y lab}
+
 \item{chr.name}{chromosome name}
 
+\item{ymax}{y max}
+
 \item{threshold}{QTL threshold}
-
-\item{xlab}{x lab}
-
-\item{ylab}{y lab}
 }
 \description{
 QTL mapping plot
