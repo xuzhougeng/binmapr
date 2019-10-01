@@ -40,3 +40,7 @@ CHROM <- CHROM[1:8]
 geno <- batchCallGeno(GT_flt, CHROM = CHROM, outdir = ".")
 ```
 
+## Reference
+
+[binmap](https://mp.weixin.qq.com/s/x6zRylSiPn0LmNtmEGbdAA)
+

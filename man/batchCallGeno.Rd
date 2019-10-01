@@ -5,8 +5,8 @@
 \title{genotyping all sample by chromsome}
 \usage{
 batchCallGeno(x, CHROM, outdir = ".", window.size = 15,
-  low.count = 6, high.count = 24, fix.size = 5, pdf.height = 4,
-  pdf.width = 8)
+  low.count = 6, high.count = 24, fix.size = 5, pos.start = 6,
+  pdf.height = 4, pdf.width = 8)
 }
 \arguments{
 \item{x}{GT matrix}
@@ -22,6 +22,9 @@ batchCallGeno(x, CHROM, outdir = ".", window.size = 15,
 \item{high.count}{parameter of callWindowGeno}
 
 \item{fix.size}{parameter of fixGenoError}
+
+\item{pos.start}{position start index,
+for exmaple, the pos.start of chr1_1234 is 6, chr01_1234 is 7}
 
 \item{pdf.height}{pdf width}
 
