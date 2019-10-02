@@ -11,7 +11,11 @@
 #' @author Zhou-geng Xu
 callGtFromAd <- function(x, min.depth = 10, low = 0.2, high = 0.8){
 
+  # fix the bug that AD is NA
+  x[which(is.na(x))] <- "0,0"
+
   AD_COUNT_LIST <-  strsplit(x, ",", fixed = TRUE, useBytes = TRUE)
+
   AD_COUNT <- as.integer(unlist(AD_COUNT_LIST))
   Ref_COUNT <- AD_COUNT[seq.int(1,length(AD_COUNT),2)]
   Alt_COUNT <- AD_COUNT[seq.int(2,length(AD_COUNT),2)]
