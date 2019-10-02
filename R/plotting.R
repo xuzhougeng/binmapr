@@ -7,7 +7,6 @@
 #' @param ylab y lab
 #' @param title title
 #'
-#' @rdname plotGeno
 #' @export
 #' @author Zhou-geng Xu
 plotGeno <- function(geno,
@@ -32,7 +31,6 @@ plotGeno <- function(geno,
 #' @param chr.name chromosome name
 #' @param threshold QTL threshold
 #'
-#' @rdname plotQtl
 #' @export
 #' @author Zhou-geng Xu
 plotQtl <- function(pos,

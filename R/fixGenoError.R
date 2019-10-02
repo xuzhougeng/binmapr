@@ -3,7 +3,6 @@
 #' @param geno a vector object, storing genotyping information
 #' @param fix.size the size of short genotpe error
 #'
-#' @rdname fixGenoError
 #' @export
 #' @author Zhou-geng Xu, Guang-wei Li
 fixGenoError <- function(geno, fix.size = 10 ){

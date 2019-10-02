@@ -11,7 +11,6 @@
 #' for exmaple, the pos.start of chr1_1234 is 6, chr01_1234 is 7
 #' @param pdf.height pdf width
 #' @param pdf.width pdf width
-#' @rdname batchCallGeno
 #' @export
 #'
 #' @author Zhou-Geng xu

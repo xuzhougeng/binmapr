@@ -7,7 +7,6 @@
 #' @param keep a vector store high confidence site, format should be "chr_1"
 #' @param chromosome vector, which chromosome to use
 #' if it is NULL, all chromosome will be include in analysis
-#' @rdname getAdFromVcf
 #' @export
 #' @author Zhou-geng Xu
 getAdFromVcf <- function(file, keep = NULL, chromosome = NULL){

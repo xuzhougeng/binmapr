@@ -6,7 +6,6 @@
 #' @param low  threshold to infer one parent, 0
 #' @param high threshold to infer another parent, 2
 #'
-#' @rdname callGtFromAd
 #' @export
 #' @author Zhou-geng Xu
 callGtFromAd <- function(x, min.depth = 10, low = 0.2, high = 0.8){

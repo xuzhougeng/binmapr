@@ -12,7 +12,6 @@
 #' @param high.count parameter of callWindowGeno
 #' @param low.count parameter of callWindowGeno
 #'
-#' @rdname vcf2binmap
 #' @export
 #' @author Zhou-geng xu
 vcf2binmap <- function(vcf, outdir = ".",
