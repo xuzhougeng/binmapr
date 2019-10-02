@@ -1,46 +1,16 @@
-# binmapr: A R package from binmap analysis
+# binmapr: A R package which call marker from snp data using binmap
 
 ## Installation
 
 ```
-devtools::install("xuzhougeng/binmapr")
+devtools::install_github("xuzhougeng/binmapr")
 ```
 
-## How to use it?
+## Usage
 
-```
-library(binmapr)
-```
-
-load the data
-
-```
-marker <- readLines("marker.txt")
-
-info <- getAdFromVcf("snp_flt.recode.vcf.gz", keep = marker)
-
-AD <- info$AD
-CHROM <- unique(info$CHROM)
-
-GT <- callGtFromAd(AD$AD)
-```
-
-filter marker with high missing ratio
-
-```
-miss_ratio <- rowSums(is.na(GT)) / ncol(GT)
-GT_flt <- GT[miss_ratio < 0.05, ]
-```
-
-window genotype 
-
-```
-CHROM <- CHROM[1:8]
-
-geno <- batchCallGeno(GT_flt, CHROM = CHROM, outdir = ".")
-```
+[如何用binmapr进行遗传定位](http://xuzhougeng.top/archives/Build-binmap-with-binmapr)
 
 ## Reference
 
-[binmap](https://mp.weixin.qq.com/s/x6zRylSiPn0LmNtmEGbdAA)
+[Bin, Bin, Bin！Map, Map, Map Now!](https://mp.weixin.qq.com/s/x6zRylSiPn0LmNtmEGbdAA)
 
