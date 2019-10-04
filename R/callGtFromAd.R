@@ -10,6 +10,23 @@
 #' @author Zhou-geng Xu
 callGtFromAd <- function(x, min.depth = 10, low = 0.2, high = 0.8){
 
+  freq_mt <- calcFreqFromAd(x, min.depth = min.depth)
+
+  GT_mt <- ifelse(freq_mt < low, 0, ifelse(freq_mt > high, 2 , 1) )
+
+  return(GT_mt)
+}
+
+#' Calculate the frequcy of AD
+#' 
+#' @param x AD matrix
+#' @param min.depth minimum depth to infer the genotype, if
+#' depth lower than it, it will be conside as NA
+#'
+#' @export
+#' @author Zhou-geng Xu
+calcFreqFromAd <- function(x, min.depth = 10){
+
   # fix the bug that AD is NA
   x[which(is.na(x))] <- "0,0"
 
@@ -25,11 +42,10 @@ callGtFromAd <- function(x, min.depth = 10, low = 0.2, high = 0.8){
   Alt_COUNT[NA_pos] <- NA
 
   AD_freq <- round(Alt_COUNT / (Ref_COUNT + Alt_COUNT), 2)
+  freq_mt <- matrix(AD_freq, nrow = nrow(x))
+  row.names(freq_mt) <- row.names(x)
+  colnames(freq_mt) <- colnames(x)
 
-  GT <- ifelse(AD_freq < low, 0, ifelse(AD_freq > high, 2 , 1) )
+  return(freq_mt)
 
-  GT_mt <- matrix(GT, nrow = nrow(x))
-  row.names(GT_mt) <- row.names(x)
-  colnames(GT_mt) <- colnames(x)
-  return(GT_mt)
 }
