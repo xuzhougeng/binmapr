@@ -4,13 +4,17 @@
 \alias{callGtFromAd}
 \title{call genotype from AD}
 \usage{
-callGtFromAd(x, min.depth = 10, low = 0.2, high = 0.8)
+callGtFromAd(x, min.depth = 10, max.depth = 200, low = 0.2,
+  high = 0.8)
 }
 \arguments{
 \item{x}{AD matrix}
 
 \item{min.depth}{minimum depth to infer the genotype, if
 depth lower than it, it will be conside as NA}
+
+\item{max.depth}{maximum depth to infer the genotype, if
+depth larger than it, it will be conside as NA}
 
 \item{low}{threshold to infer one parent, 0}
 

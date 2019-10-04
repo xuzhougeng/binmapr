@@ -4,13 +4,16 @@
 \alias{calcFreqFromAd}
 \title{Calculate the frequcy of AD}
 \usage{
-calcFreqFromAd(x, min.depth = 10)
+calcFreqFromAd(x, min.depth = 10, max.depth = 200)
 }
 \arguments{
 \item{x}{AD matrix}
 
 \item{min.depth}{minimum depth to infer the genotype, if
 depth lower than it, it will be conside as NA}
+
+\item{max.depth}{maximum depth to infer the genotype, if
+depth larger than it, it will be conside as NA}
 }
 \description{
 Calculate the frequcy of AD
