@@ -21,7 +21,7 @@
 #' @param pdf.width pdf width
 #' @export
 #'
-#' @author Zhou-Geng xu
+#' @author Zhougeng xu
 batchCallGeno <- function(x, CHROM, outdir = ".",
                           window.size = 15,
                           low.count = 6, high.count = 24,

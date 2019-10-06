@@ -12,7 +12,7 @@
 #'
 #' @return a list
 #' @export
-#' @author Zhou-geng xu
+#' @author Zhougeng xu
 vcf2binmap <- function(file, outdir = ".",
                        keep = NULL, chromosome = NULL,
                        min.depth = 10, max.depth = 100,

@@ -9,7 +9,7 @@
 #' @param title title
 #'
 #' @export
-#' @author Zhou-geng Xu
+#' @author Zhougeng Xu
 plotGeno <- function(geno,
                      pos.start = 6,
                      xlab = "position",
@@ -37,7 +37,7 @@ plotGeno <- function(geno,
 #' @param ... other parameter pass to base::plot
 #'
 #' @export
-#' @author Zhou-geng Xu
+#' @author Zhougeng Xu
 plotQtl <- function(pos,
                     pvalue,
                     ylab = "LOD",

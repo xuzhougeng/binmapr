@@ -9,7 +9,7 @@
 #' @param high threshold to infer another parent, encoded as 2
 #'
 #' @export
-#' @author Zhou-geng Xu
+#' @author Zhougeng Xu
 callGtFromAd <- function(x, min.depth = 10, max.depth = 200,
 						 low = 0.2, high = 0.8){
 

@@ -8,7 +8,7 @@
 #' @param chromosome vector, which chromosome to use
 #' if it is NULL, all chromosome will be include in analysis
 #' @export
-#' @author Zhou-geng Xu
+#' @author Zhougeng Xu
 getAdFromVcf <- function(file, keep = NULL, chromosome = NULL){
 
   vcf <- read.vcfR(file)

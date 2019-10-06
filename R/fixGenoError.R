@@ -9,7 +9,7 @@
 #' fixGenoError(genos, fix.size = 2)
 #'
 #' @export
-#' @author Zhou-geng Xu, Guang-wei Li
+#' @author Zhougeng Xu, Guangwei Li
 fixGenoError <- function(geno, fix.size = 10 ){
 
   # fix potential error with rle
