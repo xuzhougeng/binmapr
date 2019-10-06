@@ -46,5 +46,5 @@ a list
 convet vcf to binmap automatically
 }
 \author{
-Zhou-geng xu
+Zhougeng xu
 }

@@ -23,5 +23,5 @@ for exmaple, the pos.start of chr1_1234 is 6}
 genotype plotting
 }
 \author{
-Zhou-geng Xu
+Zhougeng Xu
 }

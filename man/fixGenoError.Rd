@@ -23,5 +23,5 @@ fixGenoError(genos, fix.size = 2)
 
 }
 \author{
-Zhou-geng Xu, Guang-wei Li
+Zhougeng Xu, Guangwei Li
 }

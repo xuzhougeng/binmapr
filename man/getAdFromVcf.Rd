@@ -18,5 +18,5 @@ if it is NULL, all chromosome will be include in analysis}
 get the AD from vcf
 }
 \author{
-Zhou-geng Xu
+Zhougeng Xu
 }

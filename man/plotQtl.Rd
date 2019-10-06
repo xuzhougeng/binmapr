@@ -26,5 +26,5 @@ plotQtl(pos, pvalue, ylab = "LOD", chr.name = "", ymax = 10,
 QTL mapping plot
 }
 \author{
-Zhou-geng Xu
+Zhougeng Xu
 }

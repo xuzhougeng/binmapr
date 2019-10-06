@@ -35,5 +35,5 @@ The genotype of each sample will be called according to
 their allele depth, and then the potential error will be fixed.
 }
 \author{
-Zhou-Geng xu
+Zhougeng xu
 }

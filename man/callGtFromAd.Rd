@@ -24,5 +24,5 @@ depth larger than it, it will be conside as NA}
 call genotype from AD
 }
 \author{
-Zhou-geng Xu
+Zhougeng Xu
 }
