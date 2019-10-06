@@ -10,26 +10,16 @@ vcf2binmap(vcf, outdir = ".", keep = NULL, chromosome = NULL,
   high.count = 24, fix.size = 5, ...)
 }
 \arguments{
-\item{vcf}{vcf file}
-
-\item{keep}{high confidence snp site}
+\item{keep}{a vector store high confidence site, format should be "chr_1"}
 
 \item{chromosome}{vector, which chromosome to use
 if it is NULL, all chromosome will be include in analysis}
 
-\item{min.depth}{parameter of callGtFromAd}
-
-\item{low.ratio}{parameter of callGtFromAd}
-
-\item{high.ratio}{parameter of callGtFromAd}
-
-\item{miss.ratio}{maximum missing ratio}
-
-\item{window.size}{parameter of callWindowGeno}
-
-\item{low.count}{parameter of callWindowGeno}
-
-\item{high.count}{parameter of callWindowGeno}
+\item{min.depth}{minimum depth to infer the genotype, if
+depth lower than it, it will be conside as NA}
+}
+\value{
+a list
 }
 \description{
 convet vcf to binmap automatically

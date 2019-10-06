@@ -1,6 +1,6 @@
 Package: binmapr
 Type: Package
-Title:  A R package which call marker from snp data using binmap
+Title:  A R Package which Call Marker from Snp Data using Binmap
 Version: 0.1.1
 Author: Zhou-geng Xu, Guang-wei Li 
 Maintainer: Zhou-geng Xu <xuzhougeng@163.com>
@@ -13,3 +13,7 @@ LazyData: true
 RoxygenNote: 6.1.1
 NeedsCompilation: no
 URL: https://github.com/xuzhougeng/binmapr
+Depends:
+    R (>= 3.0.1)
+Imports:
+    vcfR

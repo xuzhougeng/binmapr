@@ -1,17 +1,8 @@
 #' convet vcf to binmap automatically
 #'
-#' @param vcf vcf file
-#' @param keep high confidence snp site
-#' @param chromosome vector, which chromosome to use
-#' if it is NULL, all chromosome will be include in analysis
-#' @param min.depth parameter of callGtFromAd
-#' @param low.ratio parameter of callGtFromAd
-#' @param high.ratio parameter of callGtFromAd
-#' @param miss.ratio maximum missing ratio
-#' @param window.size parameter of callWindowGeno
-#' @param high.count parameter of callWindowGeno
-#' @param low.count parameter of callWindowGeno
-#'
+#' @inheritParams getAdFromVcf
+#' @inheritParams callGtFromAd
+#' @return a list
 #' @export
 #' @author Zhou-geng xu
 vcf2binmap <- function(vcf, outdir = ".",
