@@ -1,4 +1,8 @@
-#' genotyping all sample by chromsome
+#' Genotyping all sample by chromsome
+#'
+#' @description The genotype of each sample will be called according to
+#' their allele depth, and then the potential error will be fixed.
+#'
 #'
 #' @param x GT matrix
 #' @param CHROM chromosome vector

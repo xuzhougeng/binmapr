@@ -2,7 +2,7 @@
 % Please edit documentation in R/batchCallGeno.R
 \name{batchCallGeno}
 \alias{batchCallGeno}
-\title{genotyping all sample by chromsome}
+\title{Genotyping all sample by chromsome}
 \usage{
 batchCallGeno(x, CHROM, outdir = ".", window.size = 15,
   low.count = 6, high.count = 24, fix.size = 5, pos.start = 6,
@@ -31,7 +31,8 @@ for exmaple, the pos.start of chr1_1234 is 6, chr01_1234 is 7}
 \item{pdf.width}{pdf width}
 }
 \description{
-genotyping all sample by chromsome
+The genotype of each sample will be called according to
+their allele depth, and then the potential error will be fixed.
 }
 \author{
 Zhou-Geng xu

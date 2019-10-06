@@ -1,7 +1,12 @@
-#' fix potential genotype error
+#' Fix potential genotype error
 #'
 #' @param geno a vector object, storing genotyping information
 #' @param fix.size the size of short genotpe error
+#'
+#' @return vector contains error-fixed genotype
+#' @examples
+#' genos <- c(1,1,1,1,1,0,1,1,1,1,1,0)
+#' fixGenoError(genos, fix.size = 2)
 #'
 #' @export
 #' @author Zhou-geng Xu, Guang-wei Li

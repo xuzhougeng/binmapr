@@ -1,11 +1,17 @@
-#' call window genotype
+#' Call genotype by fix-size window
 #'
 #' @param x a vector object, storing genotype information
 #' @param window.size default is 15
 #' @param low default is 6
 #' @param high default is 24
 #'
-#' @rdname callWindowGeno
+#' @return vector
+#' @examples
+#' data(geno)
+#' GT <- geno[,5]
+#' names(GT) <- paste0(geno$CHR, "_", geno$POS)
+#' genos <- callWindowGeno(GT)
+#'
 #' @export
 #' @author Zhougeng Xu
 callWindowGeno <- function(x, window.size = 15,

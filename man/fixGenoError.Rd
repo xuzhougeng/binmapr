@@ -2,7 +2,7 @@
 % Please edit documentation in R/fixGenoError.R
 \name{fixGenoError}
 \alias{fixGenoError}
-\title{fix potential genotype error}
+\title{Fix potential genotype error}
 \usage{
 fixGenoError(geno, fix.size = 10)
 }
@@ -11,8 +11,16 @@ fixGenoError(geno, fix.size = 10)
 
 \item{fix.size}{the size of short genotpe error}
 }
+\value{
+vector contains error-fixed genotype
+}
 \description{
-fix potential genotype error
+Fix potential genotype error
+}
+\examples{
+genos <- c(1,1,1,1,1,0,1,1,1,1,1,0)
+fixGenoError(genos, fix.size = 2)
+
 }
 \author{
 Zhou-geng Xu, Guang-wei Li
