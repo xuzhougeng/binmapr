@@ -11,14 +11,13 @@
 #' @param x GT matrix
 #' @param CHROM chromosome vector
 #' @param outdir outdir
-#' @param window.size parameter of callWindowGeno
-#' @param high.count parameter of callWindowGeno
-#' @param low.count parameter of callWindowGeno
-#' @param fix.size parameter of fixGenoError
+#' @inheritParams callWindowGeno
+#' @inheritParams fixGenoError
 #' @param pos.start position start index,
 #' for exmaple, the pos.start of chr1_1234 is 6, chr01_1234 is 7
 #' @param pdf.height pdf width
 #' @param pdf.width pdf width
+#'
 #' @export
 #'
 #' @author Zhougeng xu
