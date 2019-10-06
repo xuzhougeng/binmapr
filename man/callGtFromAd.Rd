@@ -16,9 +16,9 @@ depth lower than it, it will be conside as NA}
 \item{max.depth}{maximum depth to infer the genotype, if
 depth larger than it, it will be conside as NA}
 
-\item{low}{threshold to infer one parent, 0}
+\item{low}{threshold to infer one parent, encoded as 0}
 
-\item{high}{threshold to infer another parent, 2}
+\item{high}{threshold to infer another parent, encoded as 2}
 }
 \description{
 call genotype from AD

@@ -1,7 +1,7 @@
 Package: binmapr
 Type: Package
 Title:  A R Package which Call Marker from Snp Data using Binmap
-Version: 0.1.2
+Version: 0.1.3
 Author: Zhou-geng Xu, Guang-wei Li 
 Maintainer: Zhou-geng Xu <xuzhougeng@163.com>
 Description: The raw NGS variants called from GBS/WES/WGS may have many

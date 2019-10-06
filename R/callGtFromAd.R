@@ -5,12 +5,12 @@
 #' depth lower than it, it will be conside as NA
 #' @param  max.depth maximum depth to infer the genotype, if
 #' depth larger than it, it will be conside as NA
-#' @param low  threshold to infer one parent, 0
-#' @param high threshold to infer another parent, 2
+#' @param low  threshold to infer one parent, encoded as 0
+#' @param high threshold to infer another parent, encoded as 2
 #'
 #' @export
 #' @author Zhou-geng Xu
-callGtFromAd <- function(x, min.depth = 10, max.depth = 200, 
+callGtFromAd <- function(x, min.depth = 10, max.depth = 200,
 						 low = 0.2, high = 0.8){
 
   freq_mt <- calcFreqFromAd(x, min.depth = min.depth,
@@ -22,7 +22,7 @@ callGtFromAd <- function(x, min.depth = 10, max.depth = 200,
 }
 
 #' Calculate the frequcy of AD
-#' 
+#'
 #' @param x AD matrix
 #' @param min.depth minimum depth to infer the genotype, if
 #' depth lower than it, it will be conside as NA

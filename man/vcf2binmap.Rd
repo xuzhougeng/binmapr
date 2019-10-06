@@ -4,12 +4,14 @@
 \alias{vcf2binmap}
 \title{convet vcf to binmap automatically}
 \usage{
-vcf2binmap(vcf, outdir = ".", keep = NULL, chromosome = NULL,
+vcf2binmap(file, outdir = ".", keep = NULL, chromosome = NULL,
   min.depth = 10, low.ratio = 0.2, high.ratio = 0.8,
   miss.ratio = 0.05, window.size = 15, low.count = 6,
   high.count = 24, fix.size = 5, ...)
 }
 \arguments{
+\item{file}{vcf file path}
+
 \item{outdir}{outdir}
 
 \item{keep}{a vector store high confidence site, format should be "chr_1"}
@@ -20,6 +22,12 @@ if it is NULL, all chromosome will be include in analysis}
 \item{min.depth}{minimum depth to infer the genotype, if
 depth lower than it, it will be conside as NA}
 
+\item{low.ratio}{threshold to infer one parent, encoded as 0}
+
+\item{high.ratio}{threshold to infer another parent, encoded as 2}
+
+\item{miss.ratio}{only keep site with miss ratio lower than it}
+
 \item{window.size}{parameter of callWindowGeno}
 
 \item{low.count}{parameter of callWindowGeno}
@@ -27,6 +35,9 @@ depth lower than it, it will be conside as NA}
 \item{high.count}{parameter of callWindowGeno}
 
 \item{fix.size}{parameter of fixGenoError}
+
+\item{max.depth}{maximum depth to infer the genotype, if
+depth larger than it, it will be conside as NA}
 }
 \value{
 a list

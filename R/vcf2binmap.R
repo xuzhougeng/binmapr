@@ -1,13 +1,19 @@
 #' convet vcf to binmap automatically
 #'
 #' @inheritParams getAdFromVcf
-#' @inheritParams callGtFromAd
 #' @inheritParams batchCallGeno
+#' @param  min.depth minimum depth to infer the genotype, if
+#' depth lower than it, it will be conside as NA
+#' @param  max.depth maximum depth to infer the genotype, if
+#' depth larger than it, it will be conside as NA
+#' @param low.ratio  threshold to infer one parent, encoded as 0
+#' @param high.ratio threshold to infer another parent, encoded as 2
+#' @param miss.ratio only keep site with miss ratio lower than it
 #'
 #' @return a list
 #' @export
 #' @author Zhou-geng xu
-vcf2binmap <- function(vcf, outdir = ".",
+vcf2binmap <- function(file, outdir = ".",
                        keep = NULL, chromosome = NULL,
                        min.depth = 10, low.ratio = 0.2, high.ratio = 0.8,
                        miss.ratio = 0.05,
@@ -16,9 +22,9 @@ vcf2binmap <- function(vcf, outdir = ".",
                        ...
                        ){
 
-  # read vcf and extract AD
+  # read vcf file and extract AD
   message("Reading VCF")
-  info <- getAdFromVcf(vcf, keep = keep, chromosome = chromosome)
+  info <- getAdFromVcf(file, keep = keep, chromosome = chromosome)
 
   AD <- info$AD
   CHROM <- unique(info$CHROM)
