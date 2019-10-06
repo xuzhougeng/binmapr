@@ -15,11 +15,11 @@
 #' @author Zhou-geng xu
 vcf2binmap <- function(file, outdir = ".",
                        keep = NULL, chromosome = NULL,
-                       min.depth = 10, low.ratio = 0.2, high.ratio = 0.8,
+                       min.depth = 10, max.depth = 100,
+                       low.ratio = 0.2, high.ratio = 0.8,
                        miss.ratio = 0.05,
                        window.size = 15, low.count = 6, high.count = 24,
-                       fix.size = 5,
-                       ...
+                       fix.size = 5
                        ){
 
   # read vcf file and extract AD
