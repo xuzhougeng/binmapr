@@ -1,5 +1,6 @@
 #' genotype plotting
 #'
+#' @importFrom graphics plot
 #' @param geno genotype vector
 #' @param pos.start position start index,
 #' for exmaple, the pos.start of chr1_1234 is 6
@@ -24,12 +25,16 @@ plotGeno <- function(geno,
 
 #' QTL mapping plot
 #'
+#' @importFrom graphics plot
+#' @importFrom graphics axis
+#' @importFrom graphics lines
 #' @param pos position of each p value
 #' @param pvalue p value
 #' @param ylab y lab
 #' @param ymax y max
 #' @param chr.name chromosome name
 #' @param threshold QTL threshold
+#' @param ... other parameter pass to base::plot
 #'
 #' @export
 #' @author Zhou-geng Xu

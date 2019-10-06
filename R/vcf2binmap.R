@@ -2,6 +2,8 @@
 #'
 #' @inheritParams getAdFromVcf
 #' @inheritParams callGtFromAd
+#' @inheritParams batchCallGeno
+#'
 #' @return a list
 #' @export
 #' @author Zhou-geng xu
@@ -30,7 +32,7 @@ vcf2binmap <- function(vcf, outdir = ".",
   message("Filter marker with high missing ratio")
   miss_ratio <- rowSums(is.na(GT)) / ncol(GT)
   GT_flt <- GT[miss_ratio < miss.ratio, ]
-  geno_list <- bacthCallGeno(x = GT_flt,
+  geno_list <- batchCallGeno(x = GT_flt,
                              CHROM = CHROM,
                              outdir = outdir)
 

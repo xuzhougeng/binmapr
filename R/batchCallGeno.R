@@ -3,6 +3,10 @@
 #' @description The genotype of each sample will be called according to
 #' their allele depth, and then the potential error will be fixed.
 #'
+#' @importFrom grDevices pdf
+#' @importFrom grDevices dev.off
+#' @importFrom graphics par
+#' @importFrom utils write.csv
 #'
 #' @param x GT matrix
 #' @param CHROM chromosome vector

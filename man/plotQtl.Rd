@@ -19,6 +19,8 @@ plotQtl(pos, pvalue, ylab = "LOD", chr.name = "", ymax = 10,
 \item{ymax}{y max}
 
 \item{threshold}{QTL threshold}
+
+\item{...}{other parameter pass to base::plot}
 }
 \description{
 QTL mapping plot

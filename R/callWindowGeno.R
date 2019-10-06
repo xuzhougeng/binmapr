@@ -1,5 +1,7 @@
 #' Call genotype by fix-size window
 #'
+#' @importFrom utils txtProgressBar
+#' @importFrom utils setTxtProgressBar
 #' @param x a vector object, storing genotype information
 #' @param window.size default is 15
 #' @param low default is 6

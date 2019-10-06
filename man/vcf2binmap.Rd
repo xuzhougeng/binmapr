@@ -10,6 +10,8 @@ vcf2binmap(vcf, outdir = ".", keep = NULL, chromosome = NULL,
   high.count = 24, fix.size = 5, ...)
 }
 \arguments{
+\item{outdir}{outdir}
+
 \item{keep}{a vector store high confidence site, format should be "chr_1"}
 
 \item{chromosome}{vector, which chromosome to use
@@ -17,6 +19,14 @@ if it is NULL, all chromosome will be include in analysis}
 
 \item{min.depth}{minimum depth to infer the genotype, if
 depth lower than it, it will be conside as NA}
+
+\item{window.size}{parameter of callWindowGeno}
+
+\item{low.count}{parameter of callWindowGeno}
+
+\item{high.count}{parameter of callWindowGeno}
+
+\item{fix.size}{parameter of fixGenoError}
 }
 \value{
 a list
