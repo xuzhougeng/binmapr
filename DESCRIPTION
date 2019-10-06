@@ -3,7 +3,7 @@ Type: Package
 Title:  A R Package which Call Marker from Snp Data using Binmap
 Description: The raw NGS variants called from GBS/WES/WGS may have many
     error site, this R packages will use binmap method to generate a 
-    high confident marker for following analysis
+    high confident marker for following analysis.
 Version: 0.1.3
 Authors@R: c(person(given = "Zhougeng", family = "Xu", email = "xuzhougeng@163.com", role  = c("aut", "cre")),
             person(given = "Guangwei", family = "Li", role = "ctb"))
