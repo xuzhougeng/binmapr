@@ -15,13 +15,9 @@ batchCallGeno(x, CHROM, outdir = ".", window.size = 15,
 
 \item{outdir}{outdir}
 
-\item{window.size}{parameter of callWindowGeno}
+\item{window.size}{default is 15}
 
-\item{low.count}{parameter of callWindowGeno}
-
-\item{high.count}{parameter of callWindowGeno}
-
-\item{fix.size}{parameter of fixGenoError}
+\item{fix.size}{the size of short genotpe error}
 
 \item{pos.start}{position start index,
 for exmaple, the pos.start of chr1_1234 is 6, chr01_1234 is 7}

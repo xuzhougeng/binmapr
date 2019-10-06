@@ -4,10 +4,16 @@
 \alias{buildMstmapInput}
 \title{Generate input for mstmap from callWindowGeno result}
 \usage{
-buildMstmapInput(geno)
+buildMstmapInput(geno, pop.type = "DH")
 }
 \arguments{
-\item{geno}{gentype matrix}
+\item{geno}{gentype matrix or list from callWindowGeno}
+
+\item{pop.type}{Character string specifying the population
+type of the data frame object. Accepted values are "DH"
+(doubled haploid), "BC" (backcross), "RILn" (non-advanced
+RIL population with n generations of selfing) and "ARIL"
+(advanced RIL) (see Details). Default is "DH".}
 }
 \value{
 data.frame
@@ -18,7 +24,7 @@ Generate input for mstmap from callWindowGeno result
 \examples{
 data(geno)
 GT <- as.matrix(geno[1:5,5:10])
-rownames(GT) <- paste0(geno$CHR, "_", geno$POS)[1:5]
+rownames(GT) <- paste0(geno$CHR[1:5], "_", geno$POS[1:5])
 df <- buildMstmapInput(GT)
 
 }

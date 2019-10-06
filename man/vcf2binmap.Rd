@@ -31,13 +31,9 @@ depth larger than it, it will be conside as NA}
 
 \item{miss.ratio}{only keep site with miss ratio lower than it}
 
-\item{window.size}{parameter of callWindowGeno}
+\item{window.size}{default is 15}
 
-\item{low.count}{parameter of callWindowGeno}
-
-\item{high.count}{parameter of callWindowGeno}
-
-\item{fix.size}{parameter of fixGenoError}
+\item{fix.size}{the size of short genotpe error}
 }
 \value{
 a list
