@@ -4,6 +4,7 @@
 
 - Add a new function `buildMstMapInput`. It will convert the 
   genotype matrix to the input of ASMap::mstmap.data.frame
+- add progress bar in bacthCallGeno, and remove it in callWindowGeno
 
 ## Version 0.1.3, 2019-10-5
 

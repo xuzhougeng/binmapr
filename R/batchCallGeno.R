@@ -2,7 +2,9 @@
 #'
 #' @description The genotype of each sample will be called according to
 #' their allele depth, and then the potential error will be fixed.
-#'
+
+#' @importFrom utils txtProgressBar
+#' @importFrom utils setTxtProgressBar
 #' @importFrom grDevices pdf
 #' @importFrom grDevices dev.off
 #' @importFrom graphics par
@@ -32,7 +34,14 @@ batchCallGeno <- function(x, CHROM, outdir = ".",
   GT_flt <- x
   geno_list <- list()
 
+  # flag for show the progress
+  flag <- 0
+  pb <- txtProgressBar(min = 0, max = 100, initial = 0, style = 3)
   for ( chr in CHROM){
+
+    # flag
+    flag <- flag + 1
+    setTxtProgressBar(pb, round(flag * 100 / length(CHROM), 0))
 
     # subset the chromosome
     GT_chr <- GT_flt[grepl(chr , row.names(GT_flt)),]

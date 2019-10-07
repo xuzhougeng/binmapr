@@ -1,7 +1,5 @@
 #' Call genotype by fix-size window
 #'
-#' @importFrom utils txtProgressBar
-#' @importFrom utils setTxtProgressBar
 #' @param x a vector object, storing genotype information
 #' @param window.size default is 15
 #' @param low default is 6
@@ -21,10 +19,7 @@ callWindowGeno <- function(x, window.size = 15,
 
   splitSNP <- split(x, ceiling(seq_along(x)/window.size))
 
-  pb <- txtProgressBar(min = 0, max = 100, initial = 0, style = 3)
   batchSNP <- sapply(seq_along(splitSNP), function(x){
-
-    setTxtProgressBar(pb, round(x * 100 / length(splitSNP), 0))
 
     snp_num <- length(splitSNP[[x]])
     start_name <- names(splitSNP[[x]][1])
