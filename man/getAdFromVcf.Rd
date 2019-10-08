@@ -14,8 +14,24 @@ getAdFromVcf(file, keep = NULL, chromosome = NULL)
 \item{chromosome}{vector, which chromosome to use
 if it is NULL, all chromosome will be include in analysis}
 }
+\value{
+a list with AD and CHROM
+}
 \description{
 get the AD from vcf
+}
+\examples{
+library(vcfR)
+data(vcfR_test)
+orig_dir <- getwd()
+temp_dir <- tempdir()
+setwd( temp_dir )
+write.vcf( vcfR_test, file = "test.vcf.gz" )
+ad <- getAdFromVcf("test.vcf.gz")
+ad
+# return is full of NA, because the origin vcf don't have INFO/AD
+setwd( orig_dir )
+
 }
 \author{
 Zhougeng Xu

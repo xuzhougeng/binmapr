@@ -8,6 +8,14 @@
 #' @param low  threshold to infer one parent, encoded as 0
 #' @param high threshold to infer another parent, encoded as 2
 #'
+#' @return matrix contains. The allele depth will convet to genotype
+#'
+#' @examples
+#' AD <- matrix(data = c("30,1","1,30","0,0","15,15"), nrow = 2)
+#' row.names(AD) <- c("chr1_1","chr1_100")
+#' colnames(AD) <- c("A","B")
+#' geno <- callGtFromAd(AD)
+#'
 #' @export
 #' @author Zhougeng Xu
 callGtFromAd <- function(x, min.depth = 10, max.depth = 200,
@@ -28,6 +36,15 @@ callGtFromAd <- function(x, min.depth = 10, max.depth = 200,
 #' depth lower than it, it will be conside as NA
 #' @param  max.depth maximum depth to infer the genotype, if
 #' depth larger than it, it will be conside as NA
+#'
+#' @return matrix contains. The alt/(alt+ref) will be caculted
+#' from the allele depth
+#'
+#' @examples
+#' AD <- matrix(data = c("30,1","1,30","0,0","15,15"), nrow = 2)
+#' row.names(AD) <- c("chr1_1","chr1_100")
+#' colnames(AD) <- c("A","B")
+#' freq <- calcFreqFromAd(AD)
 #'
 #' @export
 #' @author Zhou-geng Xu

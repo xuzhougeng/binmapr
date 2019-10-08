@@ -26,9 +26,20 @@ for exmaple, the pos.start of chr1_1234 is 6, chr01_1234 is 7}
 
 \item{pdf.width}{pdf width}
 }
+\value{
+A list object including genotype of each chromosome. It will
+also create PDF and CSV of these genotype.
+}
 \description{
 The genotype of each sample will be called according to
 their allele depth, and then the potential error will be fixed.
+}
+\examples{
+data(geno)
+GT <- as.matrix(geno[1:100,5:6])
+row.names(GT) <- paste0(geno$CHR[1:100], "_", geno$POS[1:100])
+gt <- batchCallGeno(GT, "chr01",pos.start = 7)
+
 }
 \author{
 Zhougeng xu

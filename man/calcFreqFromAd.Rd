@@ -15,8 +15,19 @@ depth lower than it, it will be conside as NA}
 \item{max.depth}{maximum depth to infer the genotype, if
 depth larger than it, it will be conside as NA}
 }
+\value{
+matrix contains. The alt/(alt+ref) will be caculted
+from the allele depth
+}
 \description{
 Calculate the frequcy of AD
+}
+\examples{
+AD <- matrix(data = c("30,1","1,30","0,0","15,15"), nrow = 2)
+row.names(AD) <- c("chr1_1","chr1_100")
+colnames(AD) <- c("A","B")
+freq <- calcFreqFromAd(AD)
+
 }
 \author{
 Zhou-geng Xu

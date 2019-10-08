@@ -8,6 +8,13 @@
 #' @param ylab y lab
 #' @param title title
 #'
+#' @return a genotype distribution by the chromsome
+#'
+#' @examples
+#' geno <- c(1,1,1,1,0,0,0,2,2,2)
+#' names(geno) <- c("1_1","1_100","1_200","1_210","1_230","1_300","1_500","1_600","1_700","1_1000")
+#' plotGeno(geno, pos.start = 3)
+#'
 #' @export
 #' @author Zhougeng Xu
 plotGeno <- function(geno,
@@ -35,6 +42,13 @@ plotGeno <- function(geno,
 #' @param chr.name chromosome name
 #' @param threshold QTL threshold
 #' @param ... other parameter pass to base::plot
+#'
+#' @return a LOD distribution by the chromsome
+#'
+#' @examples
+#' pos <- c(1,100,200,210,230,300,500,600,700,1000)
+#' pvalue <- c(0.1,0.05,0.05,0.05,0.01,0.001,0.01,0.05,0.05,0.1)
+#' plotQtl(pos, pvalue, ymax = 3)
 #'
 #' @export
 #' @author Zhougeng Xu

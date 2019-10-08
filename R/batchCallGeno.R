@@ -20,6 +20,15 @@
 #' @param pdf.height pdf width
 #' @param pdf.width pdf width
 #'
+#' @return A list object including genotype of each chromosome. It will
+#' also create PDF and CSV of these genotype.
+#'
+#' @examples
+#' data(geno)
+#' GT <- as.matrix(geno[1:100,5:6])
+#' row.names(GT) <- paste0(geno$CHR[1:100], "_", geno$POS[1:100])
+#' gt <- batchCallGeno(GT, "chr01",pos.start = 7)
+#'
 #' @export
 #'
 #' @author Zhougeng xu

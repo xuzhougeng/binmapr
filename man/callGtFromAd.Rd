@@ -20,8 +20,18 @@ depth larger than it, it will be conside as NA}
 
 \item{high}{threshold to infer another parent, encoded as 2}
 }
+\value{
+matrix contains. The allele depth will convet to genotype
+}
 \description{
 call genotype from AD
+}
+\examples{
+AD <- matrix(data = c("30,1","1,30","0,0","15,15"), nrow = 2)
+row.names(AD) <- c("chr1_1","chr1_100")
+colnames(AD) <- c("A","B")
+geno <- callGtFromAd(AD)
+
 }
 \author{
 Zhougeng Xu

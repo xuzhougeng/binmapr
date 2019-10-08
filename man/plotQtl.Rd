@@ -22,8 +22,17 @@ plotQtl(pos, pvalue, ylab = "LOD", chr.name = "", ymax = 10,
 
 \item{...}{other parameter pass to base::plot}
 }
+\value{
+a LOD distribution by the chromsome
+}
 \description{
 QTL mapping plot
+}
+\examples{
+pos <- c(1,100,200,210,230,300,500,600,700,1000)
+pvalue <- c(0.1,0.05,0.05,0.05,0.01,0.001,0.01,0.05,0.05,0.1)
+plotQtl(pos, pvalue, ymax = 3)
+
 }
 \author{
 Zhougeng Xu
