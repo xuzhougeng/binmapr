@@ -8,6 +8,7 @@
 #' (advanced RIL) (see Details). Default is "DH".
 #'
 #' @return data.frame
+#'
 #' @examples
 #' data(geno)
 #' GT <- as.matrix(geno[1:5,5:10])
