@@ -23,13 +23,13 @@ callWindowGeno <- function(x, window.size = 15,
 
     snp_num <- length(splitSNP[[x]])
     start_name <- names(splitSNP[[x]][1])
-    end_name <- names(splitSNP[[x]][])
+    end_name <- names(splitSNP[[x]][snp_num])
 
-    chr_name <- strsplit(start_name,"_",fixed = T)[[1]][1]
-    start_pos <- as.numeric(strsplit(start_name,"_",fixed = T)[[1]][2])
-    end_pos <- as.numeric(strsplit(end_name,"_",fixed = T)[[1]][2])
+    chr_name <- strsplit(start_name,"_",fixed = TRUE)[[1]][1]
+    start_pos <- as.numeric(strsplit(start_name,"_",fixed = TRUE)[[1]][2])
+    end_pos <- as.numeric(strsplit(end_name,"_",fixed = TRUE)[[1]][2])
 
-    total <- sum(splitSNP[[x]], na.rm = T)
+    total <- sum(splitSNP[[x]], na.rm = TRUE)
     names(total) <- paste(chr_name, floor((start_pos + end_pos) / 2) , sep = "_")
     return(total)
   })

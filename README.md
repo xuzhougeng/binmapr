@@ -1,4 +1,4 @@
-# binmapr: A R package which call marker from snp data using binmap
+# binmapr: Call marker from snp data using binmap
 
 ## Installation
 
