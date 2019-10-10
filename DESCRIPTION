@@ -1,9 +1,15 @@
 Package: binmapr
 Type: Package
 Title:  Call Marker from Snp Data using Binmap
-Description: The raw NGS variants called from GBS/WES/WGS may have many
-    error site, this R packages will use binmap method to generate a 
-    high confident marker for downstream analysis, such as QTL mapping, genetic map construction .
+Description: The raw NGS (Next Generation Sequencing) variants called 
+    from GBS (Genotyping by Sequencing) / WES (Whole Exon Sequencing)/
+    WGS (Whole Genome Sequencing) may include many error site, binmapr 
+    use binmap strategy to generate a high confident marker for downstream
+    analysis, such as QTL (quantitative trait locus) mapping, genetic map 
+    construction. A list of reference for this package is, Davey, J.W., 
+    Hohenlohe, P.A., Etter, P.D., Boone, J.Q., Catchen, J.M., and Blaxter, 
+    M.L. (2011). Genome-wide genetic marker discovery and genotyping using 
+    next-generation sequencing. Nat Rev Genet 12, 499–510.    
 Version: 0.1.4
 Authors@R: c(person(given = "Zhougeng", family = "Xu", email = "xuzhougeng@163.com", role  = c("aut", "cre")),
             person(given = "Guangwei", family = "Li", role = "ctb"))
@@ -14,6 +20,7 @@ LazyData: true
 RoxygenNote: 6.1.1
 NeedsCompilation: no
 URL: https://github.com/xuzhougeng/binmapr
+BugReports:  https://github.com/xuzhougeng/binmapr/issues
 Depends:
     R (>= 3.5.0)
 Imports:
