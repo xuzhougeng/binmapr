@@ -19,6 +19,7 @@
 #' "chr_01" should be "_"
 #' @inheritParams callWindowGeno
 #' @inheritParams fixGenoError
+#' @param plot.geno whether to plot the genotype or not
 #' @param pos.start position start index,
 #' for exmaple, the pos.start of chr1_1234 is 6, chr01_1234 is 7
 #' @param pdf.height pdf width
@@ -44,6 +45,7 @@ batchCallGeno <- function(x, CHROM, collapsed = FALSE,
                           low.count = 6, high.count = 24,
                           fix.size = 5,
                           pos.start = 6,
+                          plot.geno = TRUE,
                           pdf.height = 4,
                           pdf.width = 8){
 
@@ -65,8 +67,11 @@ batchCallGeno <- function(x, CHROM, collapsed = FALSE,
     pdf_path <- file.path(outdir, paste0(chr, ".pdf"))
     csv_path <- file.path(outdir, paste0(chr, ".csv"))
 
-    pdf(pdf_path, height = pdf.height, width = pdf.width)
-    par(mfrow = c(1,2))
+    if (plot.geno){
+      pdf(pdf_path, height = pdf.height, width = pdf.width)
+      par(mfrow = c(1,2))
+    }
+
 
     result <- lapply(1:ncol(GT_chr), function(x){
 
@@ -85,14 +90,18 @@ batchCallGeno <- function(x, CHROM, collapsed = FALSE,
       # Fix the potential error
       geno_fix <- fixGenoError(geno, fix.size = fix.size)
 
+      if (plot.geno){
       plotGeno(geno, pos.start = pos.start,
                ylab = "before fix", title = sample_name)
       plotGeno(geno_fix, pos.start = pos.start,
                ylab = "after fix", title = sample_name)
+      }
       return(geno_fix)
     })
 
-    dev.off()
+    if (plot.geno){
+      dev.off()
+    }
 
     geno_mt <- Reduce(cbind, result)
     colnames(geno_mt) <- colnames(GT_chr)

@@ -6,8 +6,8 @@
 \usage{
 batchCallGeno(x, CHROM, collapsed = FALSE, outdir = ".",
   window.len = 1000, delim = "_", window.size = 15, low.count = 6,
-  high.count = 24, fix.size = 5, pos.start = 6, pdf.height = 4,
-  pdf.width = 8)
+  high.count = 24, fix.size = 5, pos.start = 6, plot.geno = TRUE,
+  pdf.height = 4, pdf.width = 8)
 }
 \arguments{
 \item{x}{GT matrix}
@@ -29,6 +29,8 @@ batchCallGeno(x, CHROM, collapsed = FALSE, outdir = ".",
 
 \item{pos.start}{position start index,
 for exmaple, the pos.start of chr1_1234 is 6, chr01_1234 is 7}
+
+\item{plot.geno}{whether to plot the genotype or not}
 
 \item{pdf.height}{pdf width}
 

@@ -5,6 +5,8 @@
 - A a new function `amalgamate` to merge the snps located in a
   small window
 - A a step to run `amalgamate` in batchCallGeno
+- Add a parameter `plot.geno` for batchCallGeno, if `plot.geno=FALSE`
+  the genotype along the chromosome will not plot
 
 ## Version 0.1.4, 2019-10-6
 

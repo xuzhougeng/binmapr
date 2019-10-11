@@ -29,7 +29,8 @@ amalgamate <- function(geno, window.len = 500, delim = "_"){
 
   l <- lapply(unique(chr), function(x){
 
-    message(paste0(x))
+    # for debug
+    # message(paste0(x))
     pos_chr <- pos[chr == x]
     x_chr <- geno[chr == x]
 
