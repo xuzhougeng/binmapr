@@ -35,7 +35,8 @@ amalgamate <- function(geno, window.len = 500, delim = "_"){
     x_chr <- geno[chr == x]
 
     # get the window matrix of the position
-    index_mt <- findWindow(pos_chr, window.len = window.len)
+    index_mt <- findWindow(pos_chr, windowLen = window.len)
+    index_mt <- index_mt[rowSums(index_mt) > 0, ,drop = FALSE]
 
     new_x <- vector(length = nrow(index_mt))
 
@@ -53,6 +54,7 @@ amalgamate <- function(geno, window.len = 500, delim = "_"){
       names(new_x)[i] <- names(x_chr[index_mt[i,1]])
 
     }
+
     return(new_x)
 
   })
@@ -61,8 +63,8 @@ amalgamate <- function(geno, window.len = 500, delim = "_"){
 
 }
 
-# find the window
-findWindow <- function(pos, window.len = 500){
+# Depreated function, I have rewrited this function with Rcpp
+findWindowDepreated <- function(pos, window.len = 500){
 
   # The vector only have one window
   last_index <- length(pos)

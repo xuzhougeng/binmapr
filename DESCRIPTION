@@ -1,6 +1,6 @@
 Package: binmapr
 Type: Package
-Title:  Call Marker from Snp Data using Binmap
+Title: Call Marker from Snp Data using Binmap
 Description: The raw NGS (Next Generation Sequencing) variants called 
     from GBS (Genotyping by Sequencing) / WES (Whole Exon Sequencing)/
     WGS (Whole Genome Sequencing) may include many error site, binmapr 
@@ -18,14 +18,17 @@ License: Artistic-2.0
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 6.1.1
-NeedsCompilation: no
+NeedsCompilation: yes
 URL: https://github.com/xuzhougeng/binmapr
-BugReports:  https://github.com/xuzhougeng/binmapr/issues
+BugReports: https://github.com/xuzhougeng/binmapr/issues
 Depends:
     R (>= 3.5.0)
 Imports:
-    vcfR
+    vcfR,
+    Rcpp
 Suggests:
     testthat,
     qtl,
     ASMap
+LinkingTo: 
+    Rcpp

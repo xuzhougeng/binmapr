@@ -2,6 +2,14 @@
 
 ## Installation
 
+Stable version hosted in CRAN
+
+```r
+install.packages("binmapr")
+```
+
+Development version
+
 ```
 devtools::install_github("xuzhougeng/binmapr")
 ```
