@@ -1,5 +1,11 @@
 # Revision history for the R/qtl package
 
+## Version 0.1.5, 2019-10-11
+
+- A a new function `amalgamate` to merge the snps located in a
+  small window
+- A a step to run `amalgamate` in batchCallGeno
+
 ## Version 0.1.4, 2019-10-6
 
 - Add a new function `buildMstMapInput`. It will convert the 

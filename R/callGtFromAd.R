@@ -8,7 +8,13 @@
 #' @param low  threshold to infer one parent, encoded as 0
 #' @param high threshold to infer another parent, encoded as 2
 #'
-#' @return matrix contains. The allele depth will convet to genotype
+#' @details The original GT in VCF may be wrong, if the variant is sequencing error.
+#' To avoid this kind of error, we used the ALT/(REF + ALT) to infer
+#' the genotype. If the ratio <= 0.2, it will be encoded as 0. If
+#' the ratio >= 0.8, it will be encoded as 2. Otherwise, it will be
+#' encoded as 1.
+#'
+#' @return matrix. The allele depth will convet to genotype
 #'
 #' @examples
 #' AD <- matrix(data = c("30,1","1,30","0,0","15,15"), nrow = 2)
@@ -24,7 +30,7 @@ callGtFromAd <- function(x, min.depth = 10, max.depth = 200,
   freq_mt <- calcFreqFromAd(x, min.depth = min.depth,
                                max.depth = max.depth)
 
-  GT_mt <- ifelse(freq_mt < low, 0, ifelse(freq_mt > high, 2 , 1) )
+  GT_mt <- ifelse(freq_mt <= low, 0, ifelse(freq_mt >= high, 2 , 1) )
 
   return(GT_mt)
 }

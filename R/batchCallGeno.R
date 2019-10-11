@@ -12,7 +12,11 @@
 #'
 #' @param x GT matrix
 #' @param CHROM chromosome vector
+#' @param collapsed merge the neighbor SNPs into single site
 #' @param outdir outdir
+#' @param window.len window length to merge the genotype
+#' @param delim delimeter to split the position, e.g the delim of
+#' "chr_01" should be "_"
 #' @inheritParams callWindowGeno
 #' @inheritParams fixGenoError
 #' @param pos.start position start index,
@@ -32,7 +36,10 @@
 #' @export
 #'
 #' @author Zhougeng xu
-batchCallGeno <- function(x, CHROM, outdir = ".",
+batchCallGeno <- function(x, CHROM, collapsed = FALSE,
+                          outdir = ".",
+                          window.len = 1000,
+                          delim = "_",
                           window.size = 15,
                           low.count = 6, high.count = 24,
                           fix.size = 5,
@@ -62,10 +69,20 @@ batchCallGeno <- function(x, CHROM, outdir = ".",
     par(mfrow = c(1,2))
 
     result <- lapply(1:ncol(GT_chr), function(x){
+
       sample_name <- colnames(GT_chr)[x]
       x <- GT_chr[,x]
+
+      # collpased
+      if (collapsed){
+        x <- amalgamate(x, window.len = window.len, delim = delim)
+      }
+
+      # Call Geno by window
       geno <- callWindowGeno(x, window.size = window.size,
                              low = low.count, high = high.count)
+
+      # Fix the potential error
       geno_fix <- fixGenoError(geno, fix.size = fix.size)
 
       plotGeno(geno, pos.start = pos.start,

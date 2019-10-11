@@ -4,16 +4,24 @@
 \alias{batchCallGeno}
 \title{Genotyping all sample by chromsome}
 \usage{
-batchCallGeno(x, CHROM, outdir = ".", window.size = 15,
-  low.count = 6, high.count = 24, fix.size = 5, pos.start = 6,
-  pdf.height = 4, pdf.width = 8)
+batchCallGeno(x, CHROM, collapsed = FALSE, outdir = ".",
+  window.len = 1000, delim = "_", window.size = 15, low.count = 6,
+  high.count = 24, fix.size = 5, pos.start = 6, pdf.height = 4,
+  pdf.width = 8)
 }
 \arguments{
 \item{x}{GT matrix}
 
 \item{CHROM}{chromosome vector}
 
+\item{collapsed}{merge the neighbor SNPs into single site}
+
 \item{outdir}{outdir}
+
+\item{window.len}{window length to merge the genotype}
+
+\item{delim}{delimeter to split the position, e.g the delim of
+"chr_01" should be "_"}
 
 \item{window.size}{default is 15}
 

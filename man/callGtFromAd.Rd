@@ -21,10 +21,17 @@ depth larger than it, it will be conside as NA}
 \item{high}{threshold to infer another parent, encoded as 2}
 }
 \value{
-matrix contains. The allele depth will convet to genotype
+matrix. The allele depth will convet to genotype
 }
 \description{
 call genotype from AD
+}
+\details{
+The original GT in VCF may be wrong, if the variant is sequencing error.
+To avoid this kind of error, we used the ALT/(REF + ALT) to infer
+the genotype. If the ratio <= 0.2, it will be encoded as 0. If
+the ratio >= 0.8, it will be encoded as 2. Otherwise, it will be
+encoded as 1.
 }
 \examples{
 AD <- matrix(data = c("30,1","1,30","0,0","15,15"), nrow = 2)
