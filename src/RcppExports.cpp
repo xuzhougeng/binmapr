@@ -5,6 +5,18 @@
 
 using namespace Rcpp;
 
+// findRepresent
+NumericVector findRepresent(NumericMatrix mt, NumericVector geno);
+RcppExport SEXP _binmapr_findRepresent(SEXP mtSEXP, SEXP genoSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< NumericMatrix >::type mt(mtSEXP);
+    Rcpp::traits::input_parameter< NumericVector >::type geno(genoSEXP);
+    rcpp_result_gen = Rcpp::wrap(findRepresent(mt, geno));
+    return rcpp_result_gen;
+END_RCPP
+}
 // findWindow
 NumericMatrix findWindow(NumericVector pos, int windowLen);
 RcppExport SEXP _binmapr_findWindow(SEXP posSEXP, SEXP windowLenSEXP) {
@@ -19,6 +31,7 @@ END_RCPP
 }
 
 static const R_CallMethodDef CallEntries[] = {
+    {"_binmapr_findRepresent", (DL_FUNC) &_binmapr_findRepresent, 2},
     {"_binmapr_findWindow", (DL_FUNC) &_binmapr_findWindow, 2},
     {NULL, NULL, 0}
 };

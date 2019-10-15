@@ -1,5 +1,10 @@
 # Revision history for the R/qtl package
 
+## Version 0.1.6, 2019-10-15
+
+- Accelerate the `amalgamate` with Rcpp function `findWindow.cpp` and
+  `findRepresent.cpp`
+
 ## Version 0.1.5, 2019-10-11
 
 - A a new function `amalgamate` to merge the snps located in a

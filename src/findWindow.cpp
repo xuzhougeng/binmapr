@@ -62,7 +62,7 @@ NumericMatrix findWindow(NumericVector pos, int windowLen) {
   }
 
   //For the case that the last position is still in the window
-  if (pos[last_index] - pos[start_index] <  windowLen){
+  if (pos[last_index] - pos[start_index] <=  windowLen){
     index_mt(index,0) = start_index + 1;
     index_mt(index,1) = last_index  + 1;
   }
@@ -73,8 +73,9 @@ NumericMatrix findWindow(NumericVector pos, int windowLen) {
     index_mt(index, 1) = last_index + 1;
   }
 
+  NumericMatrix mt = index_mt( Range(0, index), Range(0,1));
 
-  return index_mt;
+  return mt;
 
 }
 
@@ -85,6 +86,6 @@ NumericMatrix findWindow(NumericVector pos, int windowLen) {
 //
 
 /*** R
-geno <- c(1,10:15, 20, 30:38, 51)
+geno <- c(1,10:15, 20, 30:38, 51,61)
 findWindow(geno, windowLen = 10)
 */

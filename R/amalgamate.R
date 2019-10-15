@@ -27,6 +27,7 @@ amalgamate <- function(geno, window.len = 500, delim = "_"){
   pos <- as.numeric(name_splited[seq(2,length(name_splited),2)])
 
 
+
   l <- lapply(unique(chr), function(x){
 
     # for debug
@@ -36,25 +37,8 @@ amalgamate <- function(geno, window.len = 500, delim = "_"){
 
     # get the window matrix of the position
     index_mt <- findWindow(pos_chr, windowLen = window.len)
-    index_mt <- index_mt[rowSums(index_mt) > 0, ,drop = FALSE]
 
-    new_x <- vector(length = nrow(index_mt))
-
-    for (i in 1:nrow(index_mt)) {
-
-      values <- x_chr[seq(index_mt[i,1],index_mt[i,2])]
-
-      # if the window have to many NA
-      if (sum(is.na(values)) / length(values) > 0.5){
-        new_x[i] <- NA
-      } else{
-        new_x[i] <- as.numeric(names(sort(table(values),decreasing = T)[1]))
-      }
-
-      names(new_x)[i] <- names(x_chr[index_mt[i,1]])
-
-    }
-
+    new_x <- findRepresent(index_mt, x_chr)
     return(new_x)
 
   })

@@ -1,18 +1,16 @@
 Package: binmapr
 Type: Package
-Title: Call Marker from Snp Data using Binmap
+Title: Call Marker from SNP Data using Binmap
 Description: The raw NGS (Next Generation Sequencing) variants called 
     from GBS (Genotyping by Sequencing) / WES (Whole Exon Sequencing)/
     WGS (Whole Genome Sequencing) may include many error site, binmapr 
     use binmap strategy to generate a high confident marker for downstream
     analysis, such as QTL (quantitative trait locus) mapping, genetic map 
-    construction. A list of reference for this package is, Davey, J.W., 
-    Hohenlohe, P.A., Etter, P.D., Boone, J.Q., Catchen, J.M., and Blaxter, 
-    M.L. (2011). Genome-wide genetic marker discovery and genotyping using 
-    next-generation sequencing. Nat Rev Genet 12, 499–510.    
-Version: 0.1.5
+    construction. 
+    Davey, J.W. (2011) <doi:10.1038/nrg3012>
+Version: 0.1.6
 Authors@R: c(person(given = "Zhougeng", family = "Xu", email = "xuzhougeng@163.com", role  = c("aut", "cre")),
-            person(given = "Guangwei", family = "Li", role = "ctb"))
+            person(given = "Guangwei", family = "Li", role = "aut"))
 Maintainer: Zhougeng Xu <xuzhougeng@163.com>
 License: Artistic-2.0
 Encoding: UTF-8
