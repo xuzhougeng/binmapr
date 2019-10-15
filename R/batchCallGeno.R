@@ -12,6 +12,7 @@
 #'
 #' @param x GT matrix
 #' @param CHROM chromosome vector
+#' @param min.marker.nums the minimum marker number on the chromosome
 #' @param collapsed merge the neighbor SNPs into single site
 #' @param outdir outdir
 #' @param window.len window length to merge the genotype
@@ -37,7 +38,9 @@
 #' @export
 #'
 #' @author Zhougeng xu
-batchCallGeno <- function(x, CHROM, collapsed = FALSE,
+batchCallGeno <- function(x, CHROM,
+                          min.marker.nums = 10,
+                          collapsed = FALSE,
                           outdir = ".",
                           window.len = 1000,
                           delim = "_",
@@ -63,6 +66,8 @@ batchCallGeno <- function(x, CHROM, collapsed = FALSE,
 
     # subset the chromosome
     GT_chr <- GT_flt[grepl(chr , row.names(GT_flt)),]
+
+    if (nrow(GT_chr) < min.marker.nums) { next }
 
     pdf_path <- file.path(outdir, paste0(chr, ".pdf"))
     csv_path <- file.path(outdir, paste0(chr, ".csv"))

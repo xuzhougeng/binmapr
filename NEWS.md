@@ -2,8 +2,7 @@
 
 ## Version 0.1.6, 2019-10-15
 
-- Accelerate the `amalgamate` with Rcpp function `findWindow.cpp` and
-  `findRepresent.cpp`
+- Accelerate the `amalgamate` by rewritting with CPP, `findWindow.cpp`   and `findRepresent.cpp`
 
 ## Version 0.1.5, 2019-10-11
 

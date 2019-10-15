@@ -3,11 +3,11 @@ Type: Package
 Title: Call Marker from SNP Data using Binmap
 Description: The raw NGS (Next Generation Sequencing) variants called 
     from GBS (Genotyping by Sequencing) / WES (Whole Exon Sequencing)/
-    WGS (Whole Genome Sequencing) may include many error site, binmapr 
-    use binmap strategy to generate a high confident marker for downstream
-    analysis, such as QTL (quantitative trait locus) mapping, genetic map 
-    construction. 
-    Davey, J.W. (2011) <doi:10.1038/nrg3012>
+    WGS (Whole Genome Sequencing) may include many error sites. The 
+    'binmapr' could fix the potential error sites and generate highly
+    confident markers for downstream analysis, such as QTL (quantitative
+    trait locus) mapping, genetic map construction. 
+    Davey, J.W. (2011) <doi:10.1038/nrg3012>.
 Version: 0.1.6
 Authors@R: c(person(given = "Zhougeng", family = "Xu", email = "xuzhougeng@163.com", role  = c("aut", "cre")),
             person(given = "Guangwei", family = "Li", role = "aut"))
