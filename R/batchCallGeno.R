@@ -65,9 +65,9 @@ batchCallGeno <- function(x, CHROM,
     setTxtProgressBar(pb, round(flag * 100 / length(CHROM), 0))
 
     # subset the chromosome
-    GT_chr <- GT_flt[grepl(chr , row.names(GT_flt)),]
+    GT_chr <- GT_flt[grepl(chr , row.names(GT_flt)),,drop=FALSE]
 
-    if (nrow(GT_chr) < min.marker.nums) { next }
+    if ( nrow(GT_chr) < min.marker.nums) { next }
 
     pdf_path <- file.path(outdir, paste0(chr, ".pdf"))
     csv_path <- file.path(outdir, paste0(chr, ".csv"))
