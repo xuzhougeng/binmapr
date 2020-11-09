@@ -2,12 +2,12 @@
 % Please edit documentation in R/callGtFromAd.R
 \name{calcFreqFromAd}
 \alias{calcFreqFromAd}
-\title{Calculate the frequcy of AD}
+\title{Calculate the frequcy of Allele depth}
 \usage{
 calcFreqFromAd(x, min.depth = 10, max.depth = 200)
 }
 \arguments{
-\item{x}{AD matrix}
+\item{x}{a binmapr object}
 
 \item{min.depth}{minimum depth to infer the genotype, if
 depth lower than it, it will be conside as NA}
@@ -20,7 +20,7 @@ matrix contains. The alt/(alt+ref) will be caculted
 from the allele depth
 }
 \description{
-Calculate the frequcy of AD
+Calculate the frequcy of Allele depth
 }
 \examples{
 AD <- matrix(data = c("30,1","1,30","0,0","15,15"), nrow = 2)

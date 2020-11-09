@@ -2,36 +2,28 @@
 % Please edit documentation in R/callGtFromAd.R
 \name{callGtFromAd}
 \alias{callGtFromAd}
-\title{call genotype from AD}
+\title{call genotype from Allele depth with updog}
 \usage{
-callGtFromAd(x, min.depth = 10, max.depth = 200, low = 0.2,
-  high = 0.8)
+callGtFromAd(x, ploidy = 2, model = "norm", n.cpus = 1)
 }
 \arguments{
-\item{x}{AD matrix}
+\item{x}{a binmapr object}
 
-\item{min.depth}{minimum depth to infer the genotype, if
-depth lower than it, it will be conside as NA}
+\item{ploidy}{The ploidy of the species. Assumed to be the same for each individual.}
 
-\item{max.depth}{maximum depth to infer the genotype, if
-depth larger than it, it will be conside as NA}
+\item{model}{What form should the prior (genotype distribution) take?
+More detail in help document of updog::multidog}
 
-\item{low}{threshold to infer one parent, encoded as 0}
-
-\item{high}{threshold to infer another parent, encoded as 2}
+\item{n.cpus}{The number of computing cores to use}
 }
 \value{
-matrix. The allele depth will convet to genotype
+binmapr object, containing  genotype slot
 }
 \description{
-call genotype from AD
+call genotype from Allele depth with updog
 }
 \details{
-The original GT in VCF may be wrong, if the variant is sequencing error.
-To avoid this kind of error, we used the ALT/(REF + ALT) to infer
-the genotype. If the ratio <= 0.2, it will be encoded as 0. If
-the ratio >= 0.8, it will be encoded as 2. Otherwise, it will be
-encoded as 1.
+call genotype with updog
 }
 \examples{
 AD <- matrix(data = c("30,1","1,30","0,0","15,15"), nrow = 2)

@@ -2,7 +2,7 @@
 % Please edit documentation in R/getAdFromVcf.R
 \name{getAdFromVcf}
 \alias{getAdFromVcf}
-\title{get the AD from vcf}
+\title{get the Allele depth from vcf}
 \usage{
 getAdFromVcf(file, keep = NULL, chromosome = NULL)
 }
@@ -15,10 +15,10 @@ getAdFromVcf(file, keep = NULL, chromosome = NULL)
 if it is NULL, all chromosome will be include in analysis}
 }
 \value{
-a list with AD and CHROM
+a binmapr object with AD and related information
 }
 \description{
-get the AD from vcf
+get the Allele depth from vcf
 }
 \examples{
 library(vcfR)

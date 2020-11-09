@@ -1,6 +1,6 @@
-#' call genotype from AD
+#' call genotype from Allele depth by Frequency
 #'
-#' @param x AD matrix
+#' @param x a binmapr object
 #' @param  min.depth minimum depth to infer the genotype, if
 #' depth lower than it, it will be conside as NA
 #' @param  max.depth maximum depth to infer the genotype, if
@@ -14,7 +14,7 @@
 #' the ratio >= 0.8, it will be encoded as 2. Otherwise, it will be
 #' encoded as 1.
 #'
-#' @return matrix. The allele depth will convet to genotype
+#' @return binmapr object, containing  genotype slot
 #'
 #' @examples
 #' AD <- matrix(data = c("30,1","1,30","0,0","15,15"), nrow = 2)
@@ -24,20 +24,20 @@
 #'
 #' @export
 #' @author Zhougeng Xu
-callGtFromAd <- function(x, min.depth = 10, max.depth = 200,
+callGtFromAdByFreq <- function(x, min.depth = 10, max.depth = 200,
 						 low = 0.2, high = 0.8){
 
   freq_mt <- calcFreqFromAd(x, min.depth = min.depth,
                                max.depth = max.depth)
 
-  GT_mt <- ifelse(freq_mt <= low, 0, ifelse(freq_mt >= high, 2 , 1) )
+  x$geno <- ifelse(freq_mt <= low, 0, ifelse(freq_mt >= high, 2 , 1) )
 
-  return(GT_mt)
+  return(x)
 }
 
-#' Calculate the frequcy of AD
+#' Calculate the frequcy of Allele depth
 #'
-#' @param x AD matrix
+#' @param x a binmapr object
 #' @param min.depth minimum depth to infer the genotype, if
 #' depth lower than it, it will be conside as NA
 #' @param  max.depth maximum depth to infer the genotype, if
@@ -56,14 +56,9 @@ callGtFromAd <- function(x, min.depth = 10, max.depth = 200,
 #' @author Zhou-geng Xu
 calcFreqFromAd <- function(x, min.depth = 10, max.depth = 200){
 
-  # fix the bug that AD is NA
-  x[which(is.na(x))] <- "0,0"
 
-  AD_COUNT_LIST <-  strsplit(x, ",", fixed = TRUE, useBytes = TRUE)
-
-  AD_COUNT <- as.integer(unlist(AD_COUNT_LIST))
-  Ref_COUNT <- AD_COUNT[seq.int(1,length(AD_COUNT),2)]
-  Alt_COUNT <- AD_COUNT[seq.int(2,length(AD_COUNT),2)]
+  Ref_COUNT <- x$refmat
+  Alt_COUNT <- x$altmat
   AD_Depth <- Ref_COUNT + Alt_COUNT
 
   NA_pos <- which(AD_Depth < min.depth | AD_Depth > max.depth)
@@ -71,10 +66,52 @@ calcFreqFromAd <- function(x, min.depth = 10, max.depth = 200){
   Alt_COUNT[NA_pos] <- NA
 
   AD_freq <- round(Alt_COUNT / (Ref_COUNT + Alt_COUNT), 2)
-  freq_mt <- matrix(AD_freq, nrow = nrow(x))
-  row.names(freq_mt) <- row.names(x)
-  colnames(freq_mt) <- colnames(x)
 
-  return(freq_mt)
 
+  return(AD_freq)
+
+}
+
+
+
+#' call genotype from Allele depth with updog
+#' 
+#' @importFrom updog multidog
+#' @importFrom updog format_multidog
+#' 
+#' @param x a binmapr object
+#' @param ploidy The ploidy of the species. Assumed to be the same for each individual.
+#' @param model What form should the prior (genotype distribution) take?
+#' More detail in help document of updog::multidog
+#' @param n.cpus 	The number of computing cores to use
+#'
+#' @details call genotype with updog
+#'
+#' @return binmapr object, containing  genotype slot
+#'
+#' @examples
+#' AD <- matrix(data = c("30,1","1,30","0,0","15,15"), nrow = 2)
+#' row.names(AD) <- c("chr1_1","chr1_100")
+#' colnames(AD) <- c("A","B")
+#' geno <- callGtFromAd(AD)
+#'
+#' @export
+#' @author Zhougeng Xu
+callGtFromAd <- function(x, 
+                         ploidy  = 2,
+                         model = "norm",
+                         n.cpus = 1){
+  
+  refmat  <- x$refmat
+  sizemat <- x$refmat + x$altmat
+  
+  mout <- multidog(refmat = refmat,
+                   sizemat = sizemat,
+                   ploidy = ploidy,
+                   model = model,
+                   nc = n.cpus)
+  
+  x$geno <- format_multidog(mout)
+  
+  return(x)
 }

@@ -4,8 +4,7 @@
 \alias{plotGeno}
 \title{genotype plotting}
 \usage{
-plotGeno(geno, pos.start = 6, xlab = "position", ylab = NULL,
-  title = NULL)
+plotGeno(geno, pos.start = 6, xlab = "position", ylab = NULL, title = NULL)
 }
 \arguments{
 \item{geno}{genotype vector}

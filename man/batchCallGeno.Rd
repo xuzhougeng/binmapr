@@ -4,10 +4,23 @@
 \alias{batchCallGeno}
 \title{Genotyping all sample by chromsome}
 \usage{
-batchCallGeno(x, CHROM, min.marker.nums = 10, collapsed = FALSE,
-  outdir = ".", window.len = 1000, delim = "_", window.size = 15,
-  low.count = 6, high.count = 24, fix.size = 5, pos.start = 6,
-  plot.geno = TRUE, pdf.height = 4, pdf.width = 8)
+batchCallGeno(
+  x,
+  CHROM,
+  min.marker.nums = 10,
+  collapsed = FALSE,
+  outdir = ".",
+  window.len = 1000,
+  delim = "_",
+  window.size = 15,
+  low.count = 6,
+  high.count = 24,
+  fix.size = 5,
+  pos.start = 6,
+  plot.geno = TRUE,
+  pdf.height = 4,
+  pdf.width = 8
+)
 }
 \arguments{
 \item{x}{GT matrix}

@@ -4,8 +4,15 @@
 \alias{plotQtl}
 \title{QTL mapping plot}
 \usage{
-plotQtl(pos, pvalue, ylab = "LOD", chr.name = "", ymax = 10,
-  threshold = 2, ...)
+plotQtl(
+  pos,
+  pvalue,
+  ylab = "LOD",
+  chr.name = "",
+  ymax = 10,
+  threshold = 2,
+  ...
+)
 }
 \arguments{
 \item{pos}{position of each p value}

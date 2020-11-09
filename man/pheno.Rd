@@ -4,7 +4,9 @@
 \name{pheno}
 \alias{pheno}
 \title{Rice QTL phenotype data}
-\format{An object of class \code{"cross"}; see \code{\link[qtl]{read.cross}}.}
+\format{
+An object of class \code{"cross"}; see \code{\link[qtl]{read.cross}}.
+}
 \usage{
 data(pheno)
 }
