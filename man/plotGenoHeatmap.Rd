@@ -10,8 +10,26 @@ plotGenoHeatmap(
   markers = NULL,
   chrom = NULL,
   start = NULL,
-  end = NULL
+  end = NULL,
+  order = NULL,
+  mark.sample = NULL,
+  cols = c("red", "green", "blue")
 )
+}
+\arguments{
+\item{samples}{samples}
+
+\item{markers}{markers}
+
+\item{chrom}{chromosome/contig/scaffold name, vector}
+
+\item{start}{start position, vector}
+
+\item{end}{end position, vector}
+
+\item{order}{chromosome order, vector equal length to chrom}
+
+\item{mark.sample}{mark sample name in heatmap}
 }
 \description{
 genotype heatmap
