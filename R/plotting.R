@@ -1,92 +1,115 @@
-#' genotype plotting
-#'
-#' @importFrom graphics plot
-#' @param geno genotype vector
-#' @param pos.start position start index,
-#' for exmaple, the pos.start of chr1_1234 is 6
-#' @param xlab x lab
-#' @param ylab y lab
-#' @param title title
-#'
-#' @return a genotype distribution by the chromsome
-#'
-#' @examples
-#' geno <- c(1,1,1,1,0,0,0,2,2,2)
-#' names(geno) <- c("1_1","1_100","1_200","1_210","1_230","1_300","1_500","1_600","1_700","1_1000")
-#' plotGeno(geno, pos.start = 3)
-#'
+#' genotype heatmap
+#' 
+#' @param samples samples
+#' @param markers markers
+#' @param chrom chromosome/contig/scaffold name, vector
+#' @param start start position, vector
+#' @param end end position, vector
+#' @param order chromosome order, vector equal length to chrom
+#' @param mark.sample mark sample name in heatmap
+#' @importFrom  ComplexHeatmap Heatmap
+#' @importFrom  RColorBrewer brewer.pal
+#' 
 #' @export
-#' @author Zhougeng Xu
-plotGeno <- function(geno,
-                     pos.start = 6,
-                     xlab = "position",
-                     ylab = NULL,
-                     title = NULL){
-
-  pos <- as.numeric(substring(names(geno), pos.start))
-
-  plot(x=pos, y = geno, pch=20 , cex = 0.2,
-       xlab = xlab, ylab = ylab, ylim = c(0,2),
-       main = title)
-}
-
-#' QTL mapping plot
-#'
-#' @importFrom graphics plot
-#' @importFrom graphics axis
-#' @importFrom graphics lines
-#' @param pos position of each p value
-#' @param pvalue p value
-#' @param ylab y lab
-#' @param ymax y max
-#' @param chr.name chromosome name
-#' @param threshold QTL threshold
-#' @param ... other parameter pass to base::plot
-#'
-#' @return a LOD distribution by the chromsome
-#'
-#' @examples
-#' pos <- c(1,100,200,210,230,300,500,600,700,1000)
-#' pvalue <- c(0.1,0.05,0.05,0.05,0.01,0.001,0.01,0.05,0.05,0.1)
-#' plotQtl(pos, pvalue, ymax = 3)
-#'
-#' @export
-#' @author Zhougeng Xu
-plotQtl <- function(pos,
-                    pvalue,
-                    ylab = "LOD",
-                    chr.name = "",
-                    ymax = 10,
-                    threshold = 2,
-                    ...){
-
-
-  # plot according to position
-  df <- data.frame(pos = pos,
-                   pvalue = pvalue,
-                   lod = -log10(pvalue))
-
-  plot(df$pos, df$lod,
-       ylab = ylab,
-       xlab = chr.name,
-       axes = FALSE, xaxs = "i", yaxs = "i",
-       ylim=c(0,ymax), pch=20 , cex = 0.2, type="l")
-
-  max_pos <- ceiling(max(df$pos) / 1000000) + 1
-  axis(1, at=seq(0,max_pos)* 1000000, labels = seq(0,max_pos))
-  axis(2, at=seq(0,ymax))
-  lines(x=c(0,max_pos*1000000),y=c(threshold,threshold), col = "red")
-
-  # add start position and end position
-  #start_index <- min(which(df$lod > threshold))
-  #end_index <-  min(which(rev(df$lod) > threshold))
-
-  #if ( length(start_index) > 0){
-  #  text(grconvertX(0.2,"npc"), grconvertY(0.5, "npc"),
-  #       labels = paste0("Start: ", df$pos[start_index]))
-  #  text(grconvertX(0.2,"npc"), grconvertY(0.6, "npc"),
-  #       labels = paste0("End: ", rev(df$pos)[end_index]))
-  #}
+plotGenoHeatmap <- function(obj,
+                            samples = NULL,
+                            markers = NULL,
+                            chrom = NULL,
+                            start = NULL,
+                            end = NULL,
+                            order = NULL,
+                            mark.sample = NULL,
+                            cols = c("red","green","blue")
+                            ){
+  
+  mat <- obj$geno
+  
+  # filter matrix by  samples
+  if ( ! is.null(samples)){
+    if (sum(samples  %in% ad$ind.name)  < length(samples)){
+      stop("some sample is not in your data")
+    }
+    
+    mat <- mat[, samples, drop=FALSE]
+  }
+  
+  # filter matrix by position
+  marker_pos <- c()
+  if ( !is.null(chrom) && is.null(start) && is.null(end) ){
+    # filter by chromosome
+    for ( i in seq(1, length(chrom))){
+      new_pos <-  which(obj$CHROM == chrom[i])
+      if (!is.null(order) && order[i] == "-"){
+        new_pos <- rev(new_pos)
+      }
+      marker_pos <- c(marker_pos, new_pos) 
+      }   
+  } else if ( ! is.null(chrom) && ! is.null(start) && is.null(end)){
+    # filter by chromosome and start
+    for ( i in seq(1, length(chrom))){
+      new_pos <-which(obj$CHROM == chrom[i] & 
+                        obj$POS > start[i])
+      if (!is.null(order) && order[i] == "-"){
+        new_pos <- rev(new_pos)
+      }
+      marker_pos <- c(marker_pos, new_pos)     
+    }
+  } else if ( ! is.null(chrom) && is.null(start) && !is.null(end)){
+    # filter by chromosome and end
+    for ( i in seq(1, length(chrom))){
+      new_pos <- which(obj$CHROM == chrom[i] & 
+                         obj$POS < end[i])     
+      if (!is.null(order) && order[i] == "-"){
+        new_pos <- rev(new_pos)
+      }
+      marker_pos <- c(marker_pos, new_pos) 
+    }
+  } else if ( ! is.null(chrom) && !is.null(start) && !is.null(end)){
+    # filter by chromosome start and end
+    for ( i in seq(1, length(chrom))){
+      new_pos <- which(obj$CHROM == chrom[i] & 
+                         obj$POS > start[i] & 
+                         obj$POS < end[i])
+      if (!is.null(order) && order[i] == "-"){
+        new_pos <- rev(new_pos)
+      }
+      marker_pos <- c(marker_pos, new_pos)   
+    }
+  } else if ( is.null(chrom) && is.null(start) && is.null(end)) {
+    # use all
+    marker_pos <- seq(1, obj$n.mar)
+  } else{
+    stop("chrom should not be null")
+  }
+  mat <- mat[marker_pos, , drop=FALSE]
+  
+  # add annotation
+  # set enough color for contig
+  # if the contig is too many, repeat the color
+  chrom <- unique(obj$CHROM[marker_pos])
+  col_brewer <-  RColorBrewer::brewer.pal(n=9,"Set1")
+  if ( length(chrom) <= 9 ){
+    chrom_cols <- col_brewer[1:length(chrom)]
+  } else{
+    reps <- length(chrom) %/% 9
+    remainder <- length(chrom) %% 9 
+    chrom_cols <- c(rep(col_brewer, times = reps) ,
+                     col_brewer[1:remainder])
+  }
+  names(chrom_cols) <- chrom
+  rowAnno <- rowAnnotation(
+    chrom = obj$CHROM[marker_pos],
+    col = list( chrom = chrom_cols)
+  )
+  
+  ht <- Heatmap(mat,
+                col = cols,
+                name = "genotype",
+                left_annotation = rowAnno,
+                cluster_rows = FALSE,
+                cluster_columns =  FALSE,
+                show_row_names = FALSE,
+                show_column_names = FALSE)  
 
 }
 

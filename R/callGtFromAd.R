@@ -1,3 +1,46 @@
+#' call genotype from Allele depth with updog
+#' 
+#' @importFrom updog multidog
+#' @importFrom updog format_multidog
+#' 
+#' @param x a binmapr object
+#' @param ploidy The ploidy of the species. Assumed to be the same for each individual.
+#' @param model What form should the prior (genotype distribution) take?
+#' More detail in help document of updog::multidog
+#' @param n.cpus 	The number of computing cores to use
+#'
+#' @details call genotype with updog
+#'
+#' @return binmapr object, containing  genotype slot
+#'
+#' @examples
+#' AD <- matrix(data = c("30,1","1,30","0,0","15,15"), nrow = 2)
+#' row.names(AD) <- c("chr1_1","chr1_100")
+#' colnames(AD) <- c("A","B")
+#' geno <- callGtFromAd(AD)
+#'
+#' @export
+#' @author Zhougeng Xu
+callGtFromAd <- function(x, 
+                         ploidy  = 2,
+                         model = "norm",
+                         n.cpus = 1){
+  
+  refmat  <- x$refmat
+  sizemat <- x$refmat + x$altmat
+  
+  mout <- multidog(refmat = refmat,
+                   sizemat = sizemat,
+                   ploidy = ploidy,
+                   model = model,
+                   nc = n.cpus)
+  
+  x$geno <- format_multidog(mout)
+  
+  return(x)
+}
+
+
 #' call genotype from Allele depth by Frequency
 #'
 #' @param x a binmapr object
@@ -74,44 +117,3 @@ calcFreqFromAd <- function(x, min.depth = 10, max.depth = 200){
 
 
 
-#' call genotype from Allele depth with updog
-#' 
-#' @importFrom updog multidog
-#' @importFrom updog format_multidog
-#' 
-#' @param x a binmapr object
-#' @param ploidy The ploidy of the species. Assumed to be the same for each individual.
-#' @param model What form should the prior (genotype distribution) take?
-#' More detail in help document of updog::multidog
-#' @param n.cpus 	The number of computing cores to use
-#'
-#' @details call genotype with updog
-#'
-#' @return binmapr object, containing  genotype slot
-#'
-#' @examples
-#' AD <- matrix(data = c("30,1","1,30","0,0","15,15"), nrow = 2)
-#' row.names(AD) <- c("chr1_1","chr1_100")
-#' colnames(AD) <- c("A","B")
-#' geno <- callGtFromAd(AD)
-#'
-#' @export
-#' @author Zhougeng Xu
-callGtFromAd <- function(x, 
-                         ploidy  = 2,
-                         model = "norm",
-                         n.cpus = 1){
-  
-  refmat  <- x$refmat
-  sizemat <- x$refmat + x$altmat
-  
-  mout <- multidog(refmat = refmat,
-                   sizemat = sizemat,
-                   ploidy = ploidy,
-                   model = model,
-                   nc = n.cpus)
-  
-  x$geno <- format_multidog(mout)
-  
-  return(x)
-}
