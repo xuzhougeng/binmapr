@@ -17,6 +17,8 @@ plotGenoHeatmap(
 )
 }
 \arguments{
+\item{obj}{binmapr object}
+
 \item{samples}{samples}
 
 \item{markers}{markers}

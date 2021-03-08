@@ -75,6 +75,7 @@ export2asmap <- function(geno, pop.type = "DH"){
 #' @export
 #' @author Zhougeng Xu
 export2cross <- function(x, BC.gen=0, F.gen=0, 
+                         alleles = c("A","B"),
                          parent1 = NULL, parent2 = NULL){
   
   if (is.null(parent1) | is.null((parent2))){
@@ -88,24 +89,27 @@ export2cross <- function(x, BC.gen=0, F.gen=0,
   mt <- x$geno
   
   p1_vec <- mt[, parent1]
-  p1_idx <- grep(parent1, colnames(mt))
+  p1_idx <- match(parent1, colnames(mt))
   p2_vec <- mt[, parent2]
-  p2_idx <- grep(parent2, colnames(mt))
+  p2_idx <- match(parent2, colnames(mt))
   
   # filtering the row which parents is NA
   # and only keep the  Homozygote allele
   na.pos <- c(which(is.na(p1_vec)), which( is.na(p1_vec) ))
   heter.pos <- c(which(p1_vec == 1),  which(p2_vec==1))
   same.pos <- which(p1_vec == p2_vec)
-  combine.pos <- unique(c (na.pos, heter.pos, same.pos))
+  combine.pos <- unique( c(na.pos, heter.pos, same.pos) )
   
   # filter parent 
-  p1_vec <- p1_vec[ -combine.pos ]
-  p2_vec <- p2_vec[ -combine.pos ]
-  
-  # filter genotype matrix
-  tmp_mt <- mt[-combine.pos, c(-p1_idx, -p2_idx), drop=FALSE]
-  
+  if ( length(combine.pos) > 0 ){
+    p1_vec <- p1_vec[ -combine.pos ]
+    p2_vec <- p2_vec[ -combine.pos ]
+    # filter genotype matrix
+    tmp_mt <- mt[-combine.pos, c(-p1_idx, -p2_idx), drop=FALSE]
+  } else{
+    tmp_mt <- mt
+  }
+
   n.row <- nrow(tmp_mt)
   n.col <- ncol(tmp_mt)
   
@@ -115,7 +119,9 @@ export2cross <- function(x, BC.gen=0, F.gen=0,
   for (i in seq.int(1, n.row)){
     for (j in seq.int(1, n.col)) {
       
-      if (tmp_mt[i,j] == 1){
+      if (is.na(tmp_mt[i,j])){
+        data[i,j] <- NA
+      } else if (tmp_mt[i,j] == 1){
         data[i,j] <- 2
       } else if( tmp_mt[i,j] == p1_vec[j] ){
         data[i,j] <- 1
@@ -126,7 +132,6 @@ export2cross <- function(x, BC.gen=0, F.gen=0,
       }
     }
   }
-  
   row.names(data) <- row.names(tmp_mt)
   map <- seq(0, nrow(tmp_mt)-1)
   names(map) <- row.names(tmp_mt)
@@ -140,6 +145,11 @@ export2cross <- function(x, BC.gen=0, F.gen=0,
   
   cross <- list(geno = geno, pheno = pheno)
   class(cross) <- c(type, "cross")
+  
+  if (type == "bcsft"){
+    attr(cross, "scheme") <- c(BC.gen, F.gen)
+  }
+  attr(cross, "alleles") <- alleles
   cross
   
 }

@@ -4,7 +4,14 @@
 \alias{export2cross}
 \title{Generate cross object for R/qtl}
 \usage{
-export2cross(x, BC.gen = 0, F.gen = 0, parent1 = NULL, parent2 = NULL)
+export2cross(
+  x,
+  BC.gen = 0,
+  F.gen = 0,
+  alleles = c("A", "B"),
+  parent1 = NULL,
+  parent2 = NULL
+)
 }
 \arguments{
 \item{x}{}

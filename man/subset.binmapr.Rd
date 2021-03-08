@@ -9,7 +9,7 @@
 \arguments{
 \item{x}{a binmapr object}
 
-\item{by}{subset data by "sample" or "marker"}
+\item{by}{subset data by "ind"(sample) or "mar"(marker)}
 }
 \description{
 subset the binmaprt data

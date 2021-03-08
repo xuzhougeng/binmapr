@@ -8,7 +8,7 @@ Description: The raw NGS (Next Generation Sequencing) variants called
     confident markers for downstream analysis, such as QTL (quantitative
     trait locus) mapping, genetic map construction. 
     Davey, J.W. (2011) <doi:10.1038/nrg3012>.
-Version: 0.1.6
+Version: 0.2
 Authors@R: c(person(given = "Zhougeng", family = "Xu", email = "xuzhougeng@163.com", role  = c("aut", "cre")),
             person(given = "Guangwei", family = "Li", role = "aut"))
 Maintainer: Zhougeng Xu <xuzhougeng@163.com>
