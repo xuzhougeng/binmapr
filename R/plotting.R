@@ -7,7 +7,8 @@
 #' @param end end position, vector
 #' @param order chromosome order, vector equal length to chrom
 #' @param mark.sample mark sample name in heatmap
-#' @importFrom  ComplexHeatmap Heatmap
+#' @importFrom ComplexHeatmap Heatmap
+#' @importFrom ComplexHeatmap rowAnnotation
 #' @importFrom  RColorBrewer brewer.pal
 #' 
 #' @export

@@ -1,24 +1,41 @@
 #' Fix potential genotype error
 #'
-#' @param geno a vector object, storing genotyping information
-#' @param fix.size the size of short genotpe error
+#' @param x binmapr object
+#' @param fix.size define the neighbor size to fix the error
 #'
-#' @return vector contains error-fixed genotype
+#' @return binmapr object
 #' @examples
-#' genos <- c(1,1,1,1,1,0,1,1,1,1,1,0)
-#' fixGenoError(genos, fix.size = 2)
+#' x <- fixGenoError(x, fix.size = 15)
 #'
 #' @export
 #' @author Zhougeng Xu, Guangwei Li
-fixGenoError <- function(geno, fix.size = 10 ){
+fixGenoError <- function(x, fix.size = 10 ){
 
+  geno <- x$geno
+  chroms <- x$CHROM
+  samples <- x$ind.name
+  
+  for (i in samples) {
+    for (j in unique(chroms)){
+      tmp <- geno[ chroms == j , i ]
+      res <- fixGenoErrorHelper(tmp, fix.size = fix.size)
+      geno[ chroms == j , i ] <- res
+    }
+  }
+  x$geno <- geno
+  x
+  
+}
+
+fixGenoErrorHelper <- function(geno, fix.size){
+  
   # fix potential error with rle
   geno_rle <- rle(geno)
   error_id <- which(geno_rle$lengths < fix.size)
   for(i in error_id){
     left_id <- sum(geno_rle$lengths[1:i]) - geno_rle$lengths[i]
     right_id <- sum(geno_rle$lengths[1:i])
-
+    
     if( i == 1 ){
       geno[(left_id+1):right_id] <- geno[right_id+1]
     }else{

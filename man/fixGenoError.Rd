@@ -4,22 +4,21 @@
 \alias{fixGenoError}
 \title{Fix potential genotype error}
 \usage{
-fixGenoError(geno, fix.size = 10)
+fixGenoError(x, fix.size = 10)
 }
 \arguments{
-\item{geno}{a vector object, storing genotyping information}
+\item{x}{binmapr object}
 
-\item{fix.size}{the size of short genotpe error}
+\item{fix.size}{define the neighbor size to fix the error}
 }
 \value{
-vector contains error-fixed genotype
+binmapr object
 }
 \description{
 Fix potential genotype error
 }
 \examples{
-genos <- c(1,1,1,1,1,0,1,1,1,1,1,0)
-fixGenoError(genos, fix.size = 2)
+x <- fixGenoError(x, fix.size = 15)
 
 }
 \author{

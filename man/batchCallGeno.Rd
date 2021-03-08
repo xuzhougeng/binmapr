@@ -40,7 +40,7 @@ batchCallGeno(
 
 \item{window.size}{default is 15}
 
-\item{fix.size}{the size of short genotpe error}
+\item{fix.size}{define the neighbor size to fix the error}
 
 \item{pos.start}{position start index,
 for exmaple, the pos.start of chr1_1234 is 6, chr01_1234 is 7}

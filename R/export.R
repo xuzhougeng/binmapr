@@ -18,7 +18,7 @@
 #' @export
 #' @author Zhougeng Xu
 export2asmap <- function(geno, pop.type = "DH"){
-
+  
   if ( inherits(geno, "matrix")){
     mt <- geno
   } else if( inherits(geno, "list") ) {
@@ -26,7 +26,7 @@ export2asmap <- function(geno, pop.type = "DH"){
   } else{
     stop("input should be matrix or output from batchCallGeno")
   }
-
+  
   # encode the genotype
   if (pop.type == "DH"){
     mt[mt == 0] <- "A"
@@ -51,10 +51,10 @@ export2asmap <- function(geno, pop.type = "DH"){
   } else{
     stop("unknown popultaion type, only DH, BC, RILn, ARIL is allowed")
   }
-
+  
   df <- cbind.data.frame(mt, stringsAsFactors = FALSE)
   return(df)
-
+  
 }
 
 
