@@ -1,7 +1,7 @@
 #' subset the binmaprt data
 #' 
 #' @param x a binmapr object
-#' @param by subset data by "sample" or "marker"
+#' @param by subset data by "ind"(sample) or "mar"(marker)
 #' @method subset binmapr
 #' @export
 subset.binmapr <- function(x, by, ...){
@@ -12,7 +12,7 @@ subset.binmapr <- function(x, by, ...){
     x <- calcMissRatio(x)
   }
   
-  if (by == "sample"){
+  if (by == "ind"){
     df <- data.frame(
       index    = seq(1,x$n.ind),
       ind.name = x$ind.name,
@@ -27,7 +27,7 @@ subset.binmapr <- function(x, by, ...){
       x$geno <- x$geno[, df$index, drop=FALSE]
     }
     
-  } else if ( by == "marker"){
+  } else if ( by == "mar"){
     df <- data.frame(
       index    = seq(1,x$n.mar),
       CHROM    = x$CHROM,
