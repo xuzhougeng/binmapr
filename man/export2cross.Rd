@@ -4,14 +4,7 @@
 \alias{export2cross}
 \title{Generate cross object for R/qtl}
 \usage{
-export2cross(
-  x,
-  BC.gen = 0,
-  F.gen = 0,
-  alleles = c("A", "B"),
-  parent1 = NULL,
-  parent2 = NULL
-)
+export2cross(x, BC.gen = 0, F.gen = 0, alleles = c("A", "B"), parents = NULL)
 }
 \arguments{
 \item{x}{}
@@ -19,19 +12,17 @@ export2cross(
 \item{BC.gen}{Used only for cross type "bcsft"}
 
 \item{F.gen}{Used only for cross type "bcsft"}
+
+\item{alleles}{A vector of two one-letter character strings 
+(or four, for the four-way cross), to be used as labels for the two alleles.}
+
+\item{parents}{a vector with the position or name of two parents}
 }
 \value{
-data.frame
+a binmapr object
 }
 \description{
 Generate cross object for R/qtl
-}
-\examples{
-data(geno)
-GT <- as.matrix(geno[1:5,5:10])
-rownames(GT) <- paste0(geno$CHR[1:5], "_", geno$POS[1:5])
-df <- export2asmap(GT)
-
 }
 \author{
 Zhougeng Xu

@@ -4,12 +4,14 @@
 \alias{plotRfHeatmap}
 \title{Recombination fractions heatmap}
 \usage{
-plotRfHeatmap(obj, ctg, ori)
+plotRfHeatmap(obj, ctg, ori, delim = "_")
 }
 \arguments{
 \item{obj}{binmapr object}
 
 \item{ctg}{a vector contain contig name}
+
+\item{delim}{delimiter of marker name}
 
 \item{ort}{a vector contain contig orientation}
 }

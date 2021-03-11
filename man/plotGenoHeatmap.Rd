@@ -12,7 +12,7 @@ plotGenoHeatmap(
   start = NULL,
   end = NULL,
   order = NULL,
-  mark.sample = NULL,
+  show.name = FALSE,
   cols = c("red", "green", "blue")
 )
 }
@@ -31,7 +31,7 @@ plotGenoHeatmap(
 
 \item{order}{chromosome order, vector equal length to chrom}
 
-\item{mark.sample}{mark sample name in heatmap}
+\item{show.name}{show sample name in heatmap}
 }
 \description{
 genotype heatmap

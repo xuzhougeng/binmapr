@@ -7,7 +7,7 @@
 #' @param start start position, vector
 #' @param end end position, vector
 #' @param order chromosome order, vector equal length to chrom
-#' @param mark.sample mark sample name in heatmap
+#' @param show.name show sample name in heatmap
 #' @importFrom ComplexHeatmap Heatmap
 #' @importFrom ComplexHeatmap rowAnnotation
 #' @importFrom  RColorBrewer brewer.pal
@@ -20,7 +20,7 @@ plotGenoHeatmap <- function(obj,
                             start = NULL,
                             end = NULL,
                             order = NULL,
-                            mark.sample = NULL,
+                            show.name = FALSE,
                             cols = c("red","green","blue")
                             ){
   
@@ -104,14 +104,26 @@ plotGenoHeatmap <- function(obj,
     col = list( chrom = chrom_cols)
   )
   
-  ht <- Heatmap(mat,
-                col = cols,
-                name = "genotype",
-                left_annotation = rowAnno,
-                cluster_rows = FALSE,
-                cluster_columns =  FALSE,
-                show_row_names = FALSE,
-                show_column_names = FALSE)  
+  if ( show.name ){
+    ht <- Heatmap(mat,
+                  col = cols,
+                  name = "genotype",
+                  left_annotation = rowAnno,
+                  cluster_rows = FALSE,
+                  cluster_columns =  FALSE,
+                  show_row_names = FALSE,
+                  show_column_names = TRUE)  
+  } else{
+    ht <- Heatmap(mat,
+                  col = cols,
+                  name = "genotype",
+                  left_annotation = rowAnno,
+                  cluster_rows = FALSE,
+                  cluster_columns =  FALSE,
+                  show_row_names = FALSE,
+                  show_column_names = FALSE)  
+  }
+  ht
 
 }
 
@@ -123,13 +135,15 @@ plotGenoHeatmap <- function(obj,
 #' @param obj binmapr object
 #' @param ctg a vector contain contig name
 #' @param ort a vector contain contig orientation
+#' @param delim delimiter of marker name
 #' @importFrom ComplexHeatmap Heatmap
 #' @importFrom ComplexHeatmap rowAnnotation HeatmapAnnotation
 #' @importFrom RColorBrewer brewer.pal
 #' @importFrom viridis viridis
 #' 
 #' @export
-plotRfHeatmap <- function(obj, ctg, ori ){
+plotRfHeatmap <- function(obj, ctg, ori,
+                          delim="_"){
   
   corona <- c("#1f77b4", "#d62728", "#2ca02c", "#ff7f0e", 
               "#9467bd", "#8c564b", "#e377c2","#7f7f7f", 
@@ -143,7 +157,7 @@ plotRfHeatmap <- function(obj, ctg, ori ){
   rf <- obj$rf
   num <- length(ctg)
   idx <- c()
-  mns <- substr(colnames(rf), 1,11)
+  mns <- gsub(paste0(delim,".*"),"",colnames(rf))
   for (i in seq(1, num)){
     idx_i <- which(mns %in% ctg[i])
     if (ori[i] == "-"){
