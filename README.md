@@ -1,5 +1,8 @@
 # binmapr: Call marker from snp data using binmap
 
+该R包函数和功能和之前描述不同，目前暂不可用，请等待后续更新。
+
+
 ## Installation
 
 Stable version hosted in CRAN
