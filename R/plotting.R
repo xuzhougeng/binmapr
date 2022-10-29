@@ -84,6 +84,9 @@ plotGenoHeatmap <- function(obj,
     stop("chrom should not be null")
   }
   mat <- mat[marker_pos, , drop=FALSE]
+ 
+  storage.mode(mat) <- 'character'
+
   
   # add annotation
   # set enough color for contig
@@ -104,9 +107,11 @@ plotGenoHeatmap <- function(obj,
     col = list( chrom = chrom_cols)
   )
   
+  colors = structure(cols, names = c("0", "1", "2"))
+  
   if ( show.name ){
     ht <- Heatmap(mat,
-                  col = cols,
+                  col = colors,
                   name = "genotype",
                   left_annotation = rowAnno,
                   cluster_rows = FALSE,
@@ -115,7 +120,7 @@ plotGenoHeatmap <- function(obj,
                   show_column_names = TRUE)  
   } else{
     ht <- Heatmap(mat,
-                  col = cols,
+                  col = colors,
                   name = "genotype",
                   left_annotation = rowAnno,
                   cluster_rows = FALSE,

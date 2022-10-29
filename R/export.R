@@ -116,6 +116,8 @@ export2cross <- function(x, BC.gen=0, F.gen=0,
       }
     }
   } else{
+    parent1 <- parents[1]
+    parent2 <- parents[2]
     p1_vec <- mt[, parent1]
     p1_idx <- match(parent1, colnames(mt))
     p2_vec <- mt[, parent2]
