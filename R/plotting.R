@@ -28,7 +28,7 @@ plotGenoHeatmap <- function(obj,
   
   # filter matrix by  samples
   if ( ! is.null(samples)){
-    if (sum(samples  %in% ad$ind.name)  < length(samples)){
+    if (sum(samples  %in% obj$ind.name)  < length(samples)){
       stop("some sample is not in your data")
     }
     
@@ -192,5 +192,80 @@ plotRfHeatmap <- function(obj, ctg, ori,
                 show_column_names = FALSE)
   
   
+  
+}
+
+
+#' marker distribution in scaffold/contigs
+#' 
+plotMarker <- function(binm, min_size =100000, min_num = 10,
+                       step_size = 1000000){
+  df.list <- split(binm$POS, binm$CHROM)
+  df.list.stat <- lapply(df.list, function(x){
+    stat = data.frame(max_len = max(x), num = length(x))
+  })
+  
+  stat.df <- do.call(rbind, df.list.stat)
+  stat.df$chrom <- rownames(stat.df)
+  
+  # 记录每条染色体的长度
+  stat.df <- stat.df[stat.df$max_len > min_size & stat.df$num > min_num,  ]
+  stat.df$chrom <- factor(stat.df$chrom, levels = stat.df$chrom)
+  
+  # 为每条染色体都创建一个sliding window
+  slide_window.list <- list()
+  for (i in seq(1,nrow(stat.df))){
+    seq_id <- stat.df$chrom[i]
+    start <- seq(1,stat.df$max_len[i],step_size)
+    end <- c(start[-1], stat.df$max_len[i])
+    slide_window <- data.frame(
+      chrom = seq_id,
+      start = start,
+      end = end)
+    slide_window.list[[seq_id]] <- slide_window
+  }
+  
+  slide_window_df <- do.call(rbind, slide_window.list)
+  slide_window_df$count <- 0
+  
+  # 统计binm$POS, binm$CHROM
+  for (i in seq(1, length(binm$POS))) {
+    seq_id <- binm$CHROM[i]
+    pos <- binm$POS[i]
+    
+    locate <- which(slide_window_df$chrom == seq_id & slide_window_df$start <= pos &
+                      slide_window_df$end > pos)
+    slide_window_df$count[locate] <- slide_window_df$count[locate] + 1
+    
+    
+  }
+  
+  slide_window_df$chrom <- factor(slide_window_df$chrom,
+                                  levels = unique(slide_window_df$chrom))
+  
+  library(ggplot2)
+  # modified by https://www.biostars.org/p/269857/
+  ggplot(data = stat.df) + 
+    # base rectangles for the chroms, with numeric value for each chrom on the x-axis
+    geom_rect(aes(xmin = as.numeric(chrom) - 0.2, 
+                  xmax = as.numeric(chrom) + 0.2, 
+                  ymax = max_len, ymin = 0), 
+              colour="black", fill = "white") +
+    # black & white color theme 
+    theme(axis.text.x = element_text(colour = "black"), 
+          panel.grid.major = element_blank(), 
+          panel.grid.minor = element_blank(), 
+          panel.background = element_blank()) +
+    # give the appearance of a discrete axis with chrom labels
+    scale_x_discrete(name = "chromosome", limits = as.character(stat.df$chrom)) +
+    # add marker count
+    geom_rect(data = slide_window_df, aes(xmin = as.numeric(chrom) - 0.2, 
+                                          xmax = as.numeric(chrom) + 0.2, 
+                                          ymax = end, ymin = start, fill = count))  +
+    
+    scale_fill_gradient(low='#fffdbf', high = "#a51526") +
+    # supress scientific notation on the y-axis
+    scale_y_continuous(labels = scales::comma) +
+    ylab("region (bp)")
   
 }
