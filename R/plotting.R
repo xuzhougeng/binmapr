@@ -198,10 +198,10 @@ plotRfHeatmap <- function(obj, ctg, ori,
 
 #' marker distribution in scaffold/contigs
 #' @param obj binmapr object
-#' @param ctg a vector contain contig name
-#' @param ort a vector contain contig orientation
-#' @param delim delimiter of marker name
-#' @importFrom ggplot2 ggplot scale_fill_gradient ylab
+#' @param min_size minimum scaffold/contig size
+#' @param min_num minimum marker number in scaffold/contig
+#' @param window_size windows size
+#' @importFrom ggplot2 ggplot scale_fill_gradient ylab aes
 #' @importFrom ggplot2 geom_rect theme scale_x_discrete
 #' 
 #' @export

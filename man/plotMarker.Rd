@@ -9,11 +9,11 @@ plotMarker(obj, min_size = 1e+05, min_num = 10, step_size = 1e+06)
 \arguments{
 \item{obj}{binmapr object}
 
-\item{ctg}{a vector contain contig name}
+\item{min_size}{minimum scaffold/contig size}
 
-\item{ort}{a vector contain contig orientation}
+\item{min_num}{minimum marker number in scaffold/contig}
 
-\item{delim}{delimiter of marker name}
+\item{window_size}{windows size}
 }
 \description{
 marker distribution in scaffold/contigs
