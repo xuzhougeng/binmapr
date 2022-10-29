@@ -197,10 +197,17 @@ plotRfHeatmap <- function(obj, ctg, ori,
 
 
 #' marker distribution in scaffold/contigs
+#' @param obj binmapr object
+#' @param ctg a vector contain contig name
+#' @param ort a vector contain contig orientation
+#' @param delim delimiter of marker name
+#' @importFrom ggplot2 ggplot scale_fill_gradient ylab
+#' @importFrom ggplot2 geom_rect theme scale_x_discrete
 #' 
-plotMarker <- function(binm, min_size =100000, min_num = 10,
+#' @export
+plotMarker <- function(obj, min_size =100000, min_num = 10,
                        step_size = 1000000){
-  df.list <- split(binm$POS, binm$CHROM)
+  df.list <- split(obj$POS, obj$CHROM)
   df.list.stat <- lapply(df.list, function(x){
     stat = data.frame(max_len = max(x), num = length(x))
   })
@@ -208,11 +215,11 @@ plotMarker <- function(binm, min_size =100000, min_num = 10,
   stat.df <- do.call(rbind, df.list.stat)
   stat.df$chrom <- rownames(stat.df)
   
-  # 记录每条染色体的长度
+  # record the maxmium length
   stat.df <- stat.df[stat.df$max_len > min_size & stat.df$num > min_num,  ]
   stat.df$chrom <- factor(stat.df$chrom, levels = stat.df$chrom)
   
-  # 为每条染色体都创建一个sliding window
+  # create sliding window
   slide_window.list <- list()
   for (i in seq(1,nrow(stat.df))){
     seq_id <- stat.df$chrom[i]
@@ -228,10 +235,10 @@ plotMarker <- function(binm, min_size =100000, min_num = 10,
   slide_window_df <- do.call(rbind, slide_window.list)
   slide_window_df$count <- 0
   
-  # 统计binm$POS, binm$CHROM
-  for (i in seq(1, length(binm$POS))) {
-    seq_id <- binm$CHROM[i]
-    pos <- binm$POS[i]
+  
+  for (i in seq(1, length(obj$POS))) {
+    seq_id <- obj$CHROM[i]
+    pos <- obj$POS[i]
     
     locate <- which(slide_window_df$chrom == seq_id & slide_window_df$start <= pos &
                       slide_window_df$end > pos)
@@ -243,7 +250,6 @@ plotMarker <- function(binm, min_size =100000, min_num = 10,
   slide_window_df$chrom <- factor(slide_window_df$chrom,
                                   levels = unique(slide_window_df$chrom))
   
-  library(ggplot2)
   # modified by https://www.biostars.org/p/269857/
   ggplot(data = stat.df) + 
     # base rectangles for the chroms, with numeric value for each chrom on the x-axis

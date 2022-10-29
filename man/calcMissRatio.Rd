@@ -15,9 +15,6 @@ x a binmapr object with ind.miss and mar.miss
 \description{
 Calculate the missing ratio of each sample on all site
 }
-\examples{
-
-}
 \author{
 Zhou-geng Xu
 }
