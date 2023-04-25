@@ -8,14 +8,14 @@ Description: The raw NGS (Next Generation Sequencing) variants called
     confident markers for downstream analysis, such as QTL (quantitative
     trait locus) mapping, genetic map construction. 
     Davey, J.W. (2011) <doi:10.1038/nrg3012>.
-Version: 0.2
+Version: 0.3
 Authors@R: c(person(given = "Zhougeng", family = "Xu", email = "xuzhougeng@163.com", role  = c("aut", "cre")),
             person(given = "Guangwei", family = "Li", role = "aut"))
 Maintainer: Zhougeng Xu <xuzhougeng@163.com>
 License: Artistic-2.0
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 7.2.1
+RoxygenNote: 7.2.2
 NeedsCompilation: yes
 URL: https://github.com/xuzhougeng/binmapr
 BugReports: https://github.com/xuzhougeng/binmapr/issues
