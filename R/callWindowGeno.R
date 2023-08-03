@@ -36,7 +36,7 @@ callWindowGeno <- function(binm, window.size = 15,
   for (chrom in chroms){
     
     # subset the marker by chromosome 
-    binm_sub <- subset(binm, by = "mar", CHROM==chrom)
+    binm_sub <- binm[binm$CHROM == chrom, , by = "mar"]
     
     # iterate the sample
     samples <- unique(binm_sub$ind.name)
