@@ -10,6 +10,11 @@
 #' @export
 #' @author Zhougeng Xu, Guangwei Li
 fixGenoError <- function(x, fix.size = 10 ){
+  
+  
+  if (!inherits(binm, "binmapr")) {
+    stop("binm is not a binmapr object or its subclass")
+  }
 
   geno <- x$geno
   chroms <- x$CHROM

@@ -4,10 +4,10 @@
 \alias{callWindowGeno}
 \title{Call genotype by fix-size window}
 \usage{
-callWindowGeno(x, window.size = 15, low = 6, high = 24)
+callWindowGeno(binm, window.size = 15, low = 6, high = 24)
 }
 \arguments{
-\item{x}{a vector object, storing genotype information}
+\item{binm, }{a binmapr object}
 
 \item{window.size}{default is 15}
 
@@ -16,17 +16,10 @@ callWindowGeno(x, window.size = 15, low = 6, high = 24)
 \item{high}{default is 24}
 }
 \value{
-vector
+genotype matrix list
 }
 \description{
 Call genotype by fix-size window
-}
-\examples{
-data(geno)
-GT <- geno[,5]
-names(GT) <- paste0(geno$CHR, "_", geno$POS)
-genos <- callWindowGeno(GT)
-
 }
 \author{
 Zhougeng Xu

@@ -6,6 +6,7 @@
 #' @export
 subset.binmapr <- function(x, by, ...){
   
+  
   #calculate the missing ratio of individual and marker
   if ( is.na(match("mar.miss", names(x))) ||
        is.na(match("ind.miss", names(x))) ){

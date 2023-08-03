@@ -15,18 +15,15 @@ Maintainer: Zhougeng Xu <xuzhougeng@163.com>
 License: Artistic-2.0
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 7.2.2
+RoxygenNote: 7.2.3
 NeedsCompilation: yes
 URL: https://github.com/xuzhougeng/binmapr
 BugReports: https://github.com/xuzhougeng/binmapr/issues
 Depends:
     R (>= 3.5.0)
 Imports:
-    vcfR,
-    Rcpp
+    vcfR
 Suggests:
     testthat,
     qtl,
     ASMap
-LinkingTo: 
-    Rcpp
